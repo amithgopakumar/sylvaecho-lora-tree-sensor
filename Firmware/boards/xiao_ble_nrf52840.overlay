@@ -9,7 +9,7 @@
  *   D8  SPI SCK     D9 SPI MISO     D10 SPI MOSI
  *
  * TCA9534 outputs
- *   P0 EN_MIC   P1 LORA_NRST   P2 LED   P3 CHG_EN_N (high = stop charging)   P4 spare
+ *   P0 EN_MIC   P1 LORA_NRST   P2 LED   P3 spare   P4 spare   P5 LORA_RXEN (Wio RF_SW, high = receive)
  */
 
 #include <zephyr/dt-bindings/lora/sx126x.h>
@@ -19,7 +19,6 @@
 		wake-gpios = <&xiao_d 0 GPIO_ACTIVE_LOW>;
 		mic-en-gpios = <&exp 0 GPIO_ACTIVE_HIGH>;
 		led-gpios = <&exp 2 GPIO_ACTIVE_HIGH>;
-		chg-stop-gpios = <&exp 3 GPIO_ACTIVE_HIGH>;
 	};
 
 	aliases {
@@ -71,8 +70,9 @@
 		reset-gpios = <&exp 1 GPIO_ACTIVE_LOW>;
 		busy-gpios = <&xiao_d 2 GPIO_ACTIVE_HIGH>;
 		dio1-gpios = <&xiao_d 3 GPIO_ACTIVE_HIGH>;
+		rx-enable-gpios = <&exp 5 GPIO_ACTIVE_HIGH>;
 		dio2-tx-enable;
-		/* Check the TCXO voltage against the Wio-SX1262 datasheet. */
+		/* Wio-SX1262 datasheet: TCXO 1.7-3.3 V, at least 200 mV below VCC. */
 		dio3-tcxo-voltage = <SX126X_DIO3_TCXO_1V8>;
 		tcxo-power-startup-delay-ms = <5>;
 	};

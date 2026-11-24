@@ -19,7 +19,7 @@
 #define VIB_RMS_MIN_MG          25         /* trunk vibration RMS during a check */
 #define TILT_ALERT_DEG_X10      30         /* 3.0 degrees from the installed baseline */
 
-/* Battery protection by temperature (BQ25570 has no NTC input) */
+/* LiFePO4 charge temperature window, reported as a flag (BQ25570 has no NTC input) */
 #define CHARGE_MIN_C_X100       0
 #define CHARGE_MAX_C_X100       4500
 

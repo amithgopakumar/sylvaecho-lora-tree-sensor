@@ -400,7 +400,7 @@
 				)
 			)
 		)
-		(property "Value" "Wio-SX1262 SMT (pins 1-6 VERIFY)"
+		(property "Value" "Wio-SX1262-N"
 			(at 0 -8.89 0)
 			(effects
 				(font
@@ -408,7 +408,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SylvaEcho:Wio-SX1262_SMT (VERIFY)"
+		(property "Footprint" "SylvaEcho:Wio-SX1262-N_SMT12"
 			(at 0 0 0)
 			(effects
 				(font
@@ -426,7 +426,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Wio-SX1262 SMT (pins 1-6 VERIFY)"
+		(property "Description" "Wio-SX1262-N"
 			(at 0 0 0)
 			(effects
 				(font
@@ -452,7 +452,7 @@
 			(pin input line
 				(at -15.24 7.62 0)
 				(length 2.54)
-				(name "NSS"
+				(name "RF_SW"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -467,10 +467,10 @@
 					)
 				)
 			)
-			(pin input line
+			(pin output line
 				(at -15.24 5.08 0)
 				(length 2.54)
-				(name "SCK"
+				(name "MISO"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -503,10 +503,10 @@
 					)
 				)
 			)
-			(pin output line
+			(pin input line
 				(at -15.24 0.00 0)
 				(length 2.54)
-				(name "MISO"
+				(name "SCK"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -524,7 +524,7 @@
 			(pin input line
 				(at -15.24 -2.54 0)
 				(length 2.54)
-				(name "NRESET"
+				(name "NRST"
 					(effects
 						(font
 							(size 1.27 1.27)
@@ -539,10 +539,10 @@
 					)
 				)
 			)
-			(pin power_in line
+			(pin input line
 				(at -15.24 -5.08 0)
 				(length 2.54)
-				(name "GND"
+				(name "NSS"
 					(effects
 						(font
 							(size 1.27 1.27)

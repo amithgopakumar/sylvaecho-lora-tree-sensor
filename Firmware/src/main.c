@@ -28,7 +28,7 @@ LOG_MODULE_REGISTER(sylvaecho, LOG_LEVEL_INF);
 
 static const struct gpio_dt_spec wake = GPIO_DT_SPEC_GET(USER, wake_gpios);
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(USER, led_gpios);
-static const struct gpio_dt_spec chg_stop = GPIO_DT_SPEC_GET(USER, chg_stop_gpios);
+static const struct device *const exp = DEVICE_DT_GET(DT_NODELABEL(exp));
 
 static const struct device *const lora = DEVICE_DT_GET(DT_ALIAS(lora0));
 static const struct device *const imu = DEVICE_DT_GET(DT_ALIAS(imu0));
@@ -38,7 +38,6 @@ static K_SEM_DEFINE(wake_sem, 0, 1);
 static struct gpio_callback wake_cb;
 static uint16_t seq;
 static float base_pitch, base_roll;
-static bool charge_stopped;
 
 static void on_wake(const struct device *dev, struct gpio_callback *cb, uint32_t pins)
 {
@@ -136,11 +135,9 @@ static void read_climate(struct report *r)
 	r->rh_pct = (uint8_t)sensor_value_to_double(&h);
 	r->press_hpa_x10 = (uint16_t)(sensor_value_to_double(&p) * 100.0); /* kPa to hPa x10 */
 
-	/* No NTC on the charger: stop charging outside 0-45 degC. */
-	charge_stopped = (r->temp_cx100 < CHARGE_MIN_C_X100) || (r->temp_cx100 > CHARGE_MAX_C_X100);
-	gpio_pin_set_dt(&chg_stop, charge_stopped);
-	if (charge_stopped) {
-		r->flags |= FLAG_CHARGE_STOPPED;
+	/* The BQ25570 has no temperature input; flag charging outside 0-45 degC for review. */
+	if (r->temp_cx100 < CHARGE_MIN_C_X100 || r->temp_cx100 > CHARGE_MAX_C_X100) {
+		r->flags |= FLAG_TEMP_OUT_OF_CHARGE_RANGE;
 	}
 }
 
@@ -235,7 +232,14 @@ int main(void)
 		}
 	}
 	gpio_pin_configure_dt(&led, GPIO_OUTPUT_INACTIVE);
-	gpio_pin_configure_dt(&chg_stop, GPIO_OUTPUT_INACTIVE);
+	/* Unused expander pins P3, P4, P6, P7: drive low so they do not float. */
+	if (device_is_ready(exp)) {
+		const gpio_pin_t spare[] = { 3, 4, 6, 7 };
+
+		for (size_t i = 0; i < ARRAY_SIZE(spare); i++) {
+			gpio_pin_configure(exp, spare[i], GPIO_OUTPUT_INACTIVE);
+		}
+	}
 	audio_init();
 
 	gpio_pin_configure_dt(&wake, GPIO_INPUT);

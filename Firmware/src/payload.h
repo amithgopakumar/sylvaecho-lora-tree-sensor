@@ -12,7 +12,7 @@ enum msg_type {
 };
 
 enum msg_flags {
-	FLAG_CHARGE_STOPPED = 0x01,
+	FLAG_TEMP_OUT_OF_CHARGE_RANGE = 0x01,
 	FLAG_SENSOR_FAULT = 0x02,
 };
 
