@@ -1,0 +1,107 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><style>
+html,body{margin:0;width:2300px;height:1600px;background:#ffffff;font-family:"Helvetica Neue",Arial,sans-serif;}
+</style></head><body>
+<svg width="2300" height="1600" viewBox="0 0 2300 1600" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica Neue, Arial, sans-serif">
+<defs>
+  <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+  <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#c2410c"/></marker>
+  <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d4ed8"/></marker>
+</defs>
+<style>
+ .t{font-size:40px;font-weight:700;fill:#0f172a}
+ .h{font-size:30px;font-weight:700;fill:#0f172a}
+ .s{font-size:24px;fill:#475569}
+ .l{font-size:22px;fill:#334155;font-weight:600}
+ .pw rect{fill:#fff7ed;stroke:#c2410c;stroke-width:3}
+ .mc rect{fill:#eff6ff;stroke:#1d4ed8;stroke-width:3}
+ .sn rect{fill:#f0fdf4;stroke:#15803d;stroke-width:3}
+ .rf rect{fill:#faf5ff;stroke:#7e22ce;stroke-width:3}
+</style>
+<text x="80" y="90" class="t">SylvaEcho system architecture</text>
+<text x="80" y="135" class="s">Power path (orange) · data buses (blue) · always-on blocks marked AON, switched rails marked SW</text>
+
+<!-- power chain -->
+<g class="pw">
+  <rect x="80" y="200" width="300" height="140" rx="16"/>
+  <rect x="460" y="200" width="320" height="140" rx="16"/>
+  <rect x="860" y="200" width="320" height="140" rx="16"/>
+  <rect x="1260" y="200" width="320" height="140" rx="16"/>
+</g>
+<text x="105" y="255" class="h">Solar panel</text><text x="105" y="295" class="s">1.5 W · TVS + Schottky</text>
+<text x="485" y="255" class="h">MPPT charger</text><text x="485" y="295" class="s">BQ25570 / CN3791 + NTC</text>
+<text x="885" y="255" class="h">1S LiFePO4 18650</text><text x="885" y="295" class="s">1800 mAh · protection IC</text>
+<text x="1285" y="255" class="h">TPS63900</text><text x="1285" y="295" class="s">3.3 V · 75 nA Iq</text>
+<g stroke="#c2410c" stroke-width="5" fill="none">
+  <path d="M380,270 H452" marker-end="url(#ar)"/><path d="M780,270 H852" marker-end="url(#ar)"/><path d="M1180,270 H1252" marker-end="url(#ar)"/>
+  <path d="M1580,270 H1700 V420" marker-end="url(#ar)"/>
+</g>
+<text x="1720" y="330" class="l" fill="#c2410c">3V3_AON to MCU, IMU, LoRa</text>
+
+<!-- MCU -->
+<g class="mc"><rect x="700" y="560" width="620" height="330" rx="20"/></g>
+<text x="730" y="620" class="h">Seeed XIAO nRF52840</text>
+<text x="730" y="665" class="s">Cortex-M4F 64 MHz · 256 KB RAM · 1 MB flash</text>
+<text x="730" y="705" class="s">Zephyr / nRF Connect SDK · MCUboot</text>
+<text x="730" y="745" class="s">int8 TinyML: buzz, bird, chainsaw, rain</text>
+<text x="730" y="785" class="s">BLE 5.0 setup · NFC tap-to-wake</text>
+<text x="730" y="845" class="l">AON · ~5 µA sleep</text>
+
+<!-- LoRa -->
+<g class="rf"><rect x="1580" y="420" width="560" height="200" rx="20"/></g>
+<text x="1610" y="480" class="h">Wio-SX1262 SMT module</text>
+<text x="1610" y="522" class="s">IN865 / EU868 / US915 · +22 dBm</text>
+<text x="1610" y="562" class="s">u.FL → SMA bulkhead antenna</text>
+<text x="1610" y="598" class="l">AON · ~1.6 µA sleep</text>
+<path d="M1320,645 H1572" stroke="#1d4ed8" stroke-width="5" fill="none" marker-end="url(#ab)"/>
+<text x="1335" y="615" class="l">SPI · CS · BUSY · DIO1</text>
+
+<!-- IMU -->
+<g class="sn"><rect x="80" y="420" width="520" height="200" rx="20"/></g>
+<text x="110" y="480" class="h">LSM6DSOX IMU + ML Core</text>
+<text x="110" y="522" class="s">Trunk vibration 60-200 Hz, tilt</text>
+<text x="110" y="562" class="s">Bolted to aluminium trunk plate</text>
+<text x="110" y="598" class="l">AON · ~20 µA · INT1 → D0 wake</text>
+<path d="M600,560 H660 V640 H692" stroke="#1d4ed8" stroke-width="5" fill="none" marker-end="url(#ab)"/>
+
+<!-- Mic -->
+<g class="sn"><rect x="80" y="700" width="520" height="190" rx="20"/></g>
+<text x="110" y="760" class="h">PDM MEMS microphone</text>
+<text x="110" y="802" class="s">Bottom port · IP67 ePTFE vent</text>
+<text x="110" y="842" class="s">16 kHz · 100 Hz-8 kHz band</text>
+<text x="110" y="878" class="l">SW rail 3V3_MIC</text>
+<path d="M600,795 H692" stroke="#1d4ed8" stroke-width="5" fill="none" marker-end="url(#ab)"/>
+<text x="610" y="780" class="l">PDM</text>
+
+<!-- Env sensor -->
+<g class="sn"><rect x="80" y="970" width="520" height="190" rx="20"/></g>
+<text x="110" y="1030" class="h">BME280 / SHT40</text>
+<text x="110" y="1072" class="s">Temp · humidity · pressure</text>
+<text x="110" y="1112" class="s">On slotted PCB peninsula</text>
+<text x="110" y="1148" class="l">SW rail 3V3_ENV</text>
+<path d="M600,1065 H760 V898" stroke="#1d4ed8" stroke-width="5" fill="none" marker-end="url(#ab)"/>
+
+<!-- Expander + switches -->
+<g class="mc"><rect x="700" y="970" width="620" height="190" rx="20"/></g>
+<text x="730" y="1030" class="h">PCA9536 I2C expander</text>
+<text x="730" y="1072" class="s">EN_MIC · EN_ENV · LoRa RESET · LED</text>
+<text x="730" y="1112" class="s">→ 2 × TPS22916 load switches</text>
+<path d="M1010,898 V962" stroke="#1d4ed8" stroke-width="5" fill="none" marker-end="url(#ab)"/>
+<text x="1030" y="945" class="l">I2C</text>
+
+<!-- NFC -->
+<g class="rf"><rect x="1580" y="700" width="560" height="190" rx="20"/></g>
+<text x="1610" y="760" class="h">NFC antenna (13.56 MHz)</text>
+<text x="1610" y="802" class="s">PCB / FPC coil under lid</text>
+<text x="1610" y="842" class="s">Phone tap wakes BLE for 3 min</text>
+<path d="M1572,795 H1328" stroke="#1d4ed8" stroke-width="5" fill="none" marker-end="url(#ab)"/>
+
+<!-- Logic -->
+<rect x="80" y="1240" width="2060" height="290" rx="20" fill="#f8fafc" stroke="#94a3b8" stroke-width="3"/>
+<text x="110" y="1300" class="h">Dual-trigger logic</text>
+<text x="110" y="1350" class="s">1. Every 30 min: wake 10 s → mic on → Pollinator Buzz Index (150-400 Hz) + bird activity (1-6 kHz) → LoRa report.</text>
+<text x="110" y="1395" class="s">2. Always on: IMU ML Core flags sustained 60-200 Hz trunk vibration → wakes MCU → mic on → three 1 s chainsaw checks.</text>
+<text x="110" y="1440" class="s">3. Priority LoRa alert only when vibration AND sound agree. Slow tilt (tree fall, soil creep) is reported separately.</text>
+<text x="110" y="1490" class="l">Estimated average current ~115 µA · ~520 days on battery alone (to be verified with a PPK2)</text>
+</svg>
+</body></html>

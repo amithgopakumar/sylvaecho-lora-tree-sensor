@@ -1,0 +1,10 @@
+# KiCad local state and backups
+*.kicad_prl
+*-backups/
+fp-info-cache
+# Python
+__pycache__/
+# Zephyr build output
+build/
+# Never commit LoRaWAN keys
+Firmware/secrets.conf

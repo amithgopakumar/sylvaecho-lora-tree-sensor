@@ -1,0 +1,104 @@
+/*
+ * SylvaEcho carrier board, rev 0.1
+ *
+ * XIAO pin map
+ *   D0  WAKE_N      piezo comparator + LSM6DSOX INT1 (open-drain, active low)
+ *   D1  LORA_NSS    D2 LORA_BUSY    D3 LORA_DIO1
+ *   D4  I2C SDA     D5 I2C SCL      (LSM6DSOX 0x6A, BME280 0x76, TCA9534 0x20)
+ *   D6  PDM CLK     D7 PDM DATA     (P1.11 / P1.12)
+ *   D8  SPI SCK     D9 SPI MISO     D10 SPI MOSI
+ *
+ * TCA9534 outputs
+ *   P0 EN_MIC   P1 LORA_NRST   P2 LED   P3 CHG_EN_N (high = stop charging)   P4 spare
+ */
+
+#include <zephyr/dt-bindings/lora/sx126x.h>
+
+/ {
+	zephyr,user {
+		wake-gpios = <&xiao_d 0 GPIO_ACTIVE_LOW>;
+		mic-en-gpios = <&exp 0 GPIO_ACTIVE_HIGH>;
+		led-gpios = <&exp 2 GPIO_ACTIVE_HIGH>;
+		chg-stop-gpios = <&exp 3 GPIO_ACTIVE_HIGH>;
+	};
+
+	aliases {
+		lora0 = &lora0;
+		imu0 = &imu;
+		env0 = &env;
+		dmic0 = &pdm0;
+	};
+};
+
+/* D6/D7 carry the PDM microphone, so the default UART on those pins is off. */
+&uart0 {
+	status = "disabled";
+};
+
+&xiao_i2c {
+	status = "okay";
+	clock-frequency = <I2C_BITRATE_STANDARD>;
+
+	/* TCA9534 is register-compatible with PCA9534. */
+	exp: gpio@20 {
+		compatible = "nxp,pca9534";
+		reg = <0x20>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		ngpios = <8>;
+	};
+
+	/* LSM6DSOX shares WHO_AM_I and register map with LSM6DSO. */
+	imu: lsm6dso@6a {
+		compatible = "st,lsm6dso";
+		reg = <0x6a>;
+	};
+
+	env: bme280@76 {
+		compatible = "bosch,bme280";
+		reg = <0x76>;
+	};
+};
+
+&xiao_spi {
+	status = "okay";
+	cs-gpios = <&xiao_d 1 GPIO_ACTIVE_LOW>;
+
+	lora0: lora@0 {
+		compatible = "semtech,sx1262";
+		reg = <0>;
+		spi-max-frequency = <8000000>;
+		reset-gpios = <&exp 1 GPIO_ACTIVE_LOW>;
+		busy-gpios = <&xiao_d 2 GPIO_ACTIVE_HIGH>;
+		dio1-gpios = <&xiao_d 3 GPIO_ACTIVE_HIGH>;
+		dio2-tx-enable;
+		/* Check the TCXO voltage against the Wio-SX1262 datasheet. */
+		dio3-tcxo-voltage = <SX126X_DIO3_TCXO_1V8>;
+		tcxo-power-startup-delay-ms = <5>;
+	};
+};
+
+&pinctrl {
+	pdm0_default: pdm0_default {
+		group1 {
+			psels = <NRF_PSEL(PDM_CLK, 1, 11)>,
+				<NRF_PSEL(PDM_DIN, 1, 12)>;
+		};
+	};
+
+	pdm0_sleep: pdm0_sleep {
+		group1 {
+			psels = <NRF_PSEL(PDM_CLK, 1, 11)>,
+				<NRF_PSEL(PDM_DIN, 1, 12)>;
+			low-power-enable;
+		};
+	};
+};
+
+&pdm0 {
+	status = "okay";
+	pinctrl-0 = <&pdm0_default>;
+	pinctrl-1 = <&pdm0_sleep>;
+	pinctrl-names = "default", "sleep";
+	clock-source = "PCLK32M_HFXO";
+};
