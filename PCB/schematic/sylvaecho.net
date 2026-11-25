@@ -2,25 +2,25 @@
 	(version "E")
 	(design
 		(source "sylvaecho.kicad_sch")
-		(date "2026-11-24T13:08:02")
+		(date "2026-11-24T14:34:18")
 		(tool "Eeschema 10.0.3")
 		(sheet
 			(number "1")
 			(name "/")
 			(tstamps "/")
 			(title_block
-				(title "SylvaEcho carrier board")
-				(company "EasyEDA Spark 2026 entry")
-				(rev "0.2")
+				(title "SylvaEcho - Solar LoRa Tree Sensor, Carrier Board")
+				(company "EasyEDA Spark 2026")
+				(rev "0.3")
 				(date "2026-11-24")
 				(source "sylvaecho.kicad_sch")
 				(comment
 					(number "1")
-					(value "Generated schematic. Items marked VERIFY must be checked against datasheets.")
+					(value "XIAO nRF52840, Wio-SX1262-N, BQ25570, TPS63900, LSM6DSOX, BME280, PDM mic")
 				)
 				(comment
 					(number "2")
-					(value "Rev 0.2: datasheet review of BQ25570, TPS63900 and Wio-SX1262.")
+					(value "Rev 0.3: drawing re-organised; circuit identical to rev 0.2")
 				)
 				(comment
 					(number "3")
@@ -60,9 +60,6 @@
 			(footprint "Capacitor_SMD:C_0603_1608Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
 				(field
 					(name "Datasheet")
@@ -75,10 +72,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -100,7 +93,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "c06c2771-1147-5622-83d4-de5906c81865")
+			(tstamps "94a02971-44ad-56b4-93c4-628c1cfd4e6c")
 			(units
 				(unit
 					(name "A")
@@ -121,9 +114,6 @@
 			(footprint "Capacitor_SMD:C_0603_1608Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
 				(field
 					(name "Datasheet")
@@ -136,10 +126,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -161,7 +147,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "e4a3943f-35d3-58eb-a0c6-625f7c32f629")
+			(tstamps "ecd2afee-3664-541a-bbd8-48ca6358b7df")
 			(units
 				(unit
 					(name "A")
@@ -182,9 +168,6 @@
 			(footprint "Capacitor_SMD:C_0603_1608Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
 				(field
 					(name "Datasheet")
@@ -197,10 +180,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -222,7 +201,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "89779b18-06d3-54a3-8617-1a6fc8991b18")
+			(tstamps "2199d120-480f-5310-93ec-9fc1a94d3940")
 			(units
 				(unit
 					(name "A")
@@ -243,9 +222,6 @@
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -258,10 +234,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -283,7 +255,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "71c9810d-8c1f-565d-ae78-51cb454318fb")
+			(tstamps "d4862e54-5ff5-5ec8-b9de-9329e40e6199")
 			(units
 				(unit
 					(name "A")
@@ -304,9 +276,6 @@
 			(footprint "Capacitor_SMD:C_1206_3216Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_1206_3216Metric")
 				(field
 					(name "Datasheet")
@@ -319,10 +288,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -344,7 +309,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "8880a1c3-1770-584a-9af6-7d9f3dbaab63")
+			(tstamps "ca33f1cb-813b-50df-90ae-2cd46d5bcb81")
 			(units
 				(unit
 					(name "A")
@@ -365,9 +330,6 @@
 			(footprint "Capacitor_SMD:C_0805_2012Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
 				(field
 					(name "Datasheet")
@@ -380,10 +342,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -405,7 +363,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "6e4c4540-d5a1-5456-b1a8-8238a01de6d6")
+			(tstamps "fe1f5e02-7e12-55c4-a566-8b346945d90e")
 			(units
 				(unit
 					(name "A")
@@ -426,9 +384,6 @@
 			(footprint "Capacitor_SMD:C_0805_2012Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0805_2012Metric")
 				(field
 					(name "Datasheet")
@@ -441,10 +396,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -466,7 +417,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "74660f15-ea1b-5cc9-a72f-26ef57949f3d")
+			(tstamps "343a15f6-153f-5b61-8395-f64bde453123")
 			(units
 				(unit
 					(name "A")
@@ -487,9 +438,6 @@
 			(footprint "Capacitor_SMD:C_0603_1608Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
 				(field
 					(name "Datasheet")
@@ -502,10 +450,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -527,7 +471,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "7a6dff33-68dd-54d4-ab2c-84dbc12892e7")
+			(tstamps "bd32cfdd-26e3-57a1-9036-4c02afb816f3")
 			(units
 				(unit
 					(name "A")
@@ -548,9 +492,6 @@
 			(footprint "Capacitor_SMD:C_0603_1608Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0603_1608Metric")
 				(field
 					(name "Datasheet")
@@ -563,10 +504,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -588,7 +525,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "04d9da3c-0762-5639-bdab-98bb2c951de0")
+			(tstamps "934322ac-96a7-553b-a581-14a1040fa8a9")
 			(units
 				(unit
 					(name "A")
@@ -609,9 +546,6 @@
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -624,10 +558,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -649,7 +579,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "a9a5c1d4-c42d-5652-b9a3-e37bdceaa549")
+			(tstamps "6f132c07-0cfc-54c3-84bf-6c9534a604f9")
 			(units
 				(unit
 					(name "A")
@@ -666,12 +596,9 @@
 		)
 		(comp
 			(ref "C11")
-			(value "DNP (pi-match shunt)")
+			(value "DNP")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
@@ -685,10 +612,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -713,7 +636,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "9f815147-1764-5586-8500-922831a2bc7a")
+			(tstamps "4537702e-9f25-5c05-a32a-95facb9e2190")
 			(units
 				(unit
 					(name "A")
@@ -730,12 +653,9 @@
 		)
 		(comp
 			(ref "C12")
-			(value "DNP (pi-match shunt)")
+			(value "DNP")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
@@ -749,10 +669,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -777,7 +693,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "a551b70d-9991-5c04-abae-abb9ca82193f")
+			(tstamps "00569771-a1dc-5e51-aac3-1c158f7a50d2")
 			(units
 				(unit
 					(name "A")
@@ -794,12 +710,9 @@
 		)
 		(comp
 			(ref "C13")
-			(value "NFC tune (VERIFY, ~300pF)")
+			(value "300pF*")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
@@ -813,10 +726,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -838,7 +747,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "71f94cb3-b15b-58a0-9fb6-a9692558e201")
+			(tstamps "e4a58b20-7c61-50fd-9b12-7b11d3e25b4a")
 			(units
 				(unit
 					(name "A")
@@ -855,12 +764,9 @@
 		)
 		(comp
 			(ref "C14")
-			(value "NFC tune (VERIFY, ~300pF)")
+			(value "300pF*")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
@@ -874,10 +780,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -899,7 +801,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "b41f2ecd-07cc-5abe-afdc-561e12c24c99")
+			(tstamps "a412c8c2-0250-5fe8-9950-b8906a8a098c")
 			(units
 				(unit
 					(name "A")
@@ -916,12 +818,9 @@
 		)
 		(comp
 			(ref "C15")
-			(value "4.7nF (LP ~340Hz)")
+			(value "4.7nF")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
@@ -935,10 +834,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -960,7 +855,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "7c50b54c-7e00-5b93-96b8-2ad5aaa8eb9c")
+			(tstamps "822ec75a-4c89-5bfa-bacc-60ef068b2257")
 			(units
 				(unit
 					(name "A")
@@ -977,12 +872,9 @@
 		)
 		(comp
 			(ref "C16")
-			(value "680pF (HP ~50Hz)")
+			(value "680pF")
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
@@ -996,10 +888,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1021,7 +909,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "50418051-34d0-5c3f-b12c-9a1bc808978c")
+			(tstamps "e6b9c893-3a07-5c97-973e-fb980420e589")
 			(units
 				(unit
 					(name "A")
@@ -1042,9 +930,6 @@
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -1057,10 +942,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1082,7 +963,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "b050a114-58a6-56f2-a0cf-73848dfa75fb")
+			(tstamps "6cb34d24-d744-515a-bf64-935d76d020a7")
 			(units
 				(unit
 					(name "A")
@@ -1103,9 +984,6 @@
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -1118,10 +996,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1143,7 +1017,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "39f13932-9738-5baa-a692-072e97791b35")
+			(tstamps "d2d6a989-1ae2-5df3-be8d-4bc92ecd321c")
 			(units
 				(unit
 					(name "A")
@@ -1164,9 +1038,6 @@
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -1179,10 +1050,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1204,7 +1071,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "dab1469d-7ada-51a9-8a72-3e35371855a4")
+			(tstamps "43a0f211-56c3-50fa-8f2a-0ba1a48f5962")
 			(units
 				(unit
 					(name "A")
@@ -1225,9 +1092,6 @@
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -1240,10 +1104,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1265,7 +1125,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "7df39ec0-bf9c-57c5-9edd-bbeb06460718")
+			(tstamps "a62882b7-1fdc-5eb6-9705-c72c85fa0782")
 			(units
 				(unit
 					(name "A")
@@ -1286,9 +1146,6 @@
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -1301,10 +1158,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1326,7 +1179,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "7f9e9597-3b88-56c1-82a4-0ff568a9dccc")
+			(tstamps "3e7dc31a-ca3b-5a0e-9655-6c2752ece7bf")
 			(units
 				(unit
 					(name "A")
@@ -1347,9 +1200,6 @@
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -1362,10 +1212,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1387,7 +1233,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "3c9747bc-a072-56a5-9f25-dbcc9f3d7878")
+			(tstamps "84a7e85b-9c19-5ca1-ad62-fe8601a5325c")
 			(units
 				(unit
 					(name "A")
@@ -1408,9 +1254,6 @@
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -1423,10 +1266,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1448,7 +1287,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "a334267b-b945-5d2e-88cd-03f53349fb9c")
+			(tstamps "4cff0d31-de7a-5c54-9983-a01d53aad05a")
 			(units
 				(unit
 					(name "A")
@@ -1469,9 +1308,6 @@
 			(footprint "Capacitor_SMD:C_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Capacitor_SMD:C_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -1484,10 +1320,6 @@
 				(lib "Device")
 				(part "C")
 				(description "Unpolarized capacitor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1509,7 +1341,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "cc48fb5c-037b-51fe-8680-41e4053cdc43")
+			(tstamps "e30a9a60-60ac-5d52-903b-2cfaa312bdb1")
 			(units
 				(unit
 					(name "A")
@@ -1530,9 +1362,6 @@
 			(footprint "Diode_SMD:D_SOD-123")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Diode_SMD:D_SOD-123")
 				(field
 					(name "Datasheet")
@@ -1545,10 +1374,6 @@
 				(lib "Device")
 				(part "D_Schottky")
 				(description "Schottky diode")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1570,7 +1395,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "5eea45bd-f039-53c0-9fa5-7f0b32c047db")
+			(tstamps "8bc9f687-4843-540c-997a-f20c04ecaf38")
 			(units
 				(unit
 					(name "A")
@@ -1587,12 +1412,9 @@
 		)
 		(comp
 			(ref "D2")
-			(value "BZT52C4V7 clamp")
+			(value "BZT52C4V7")
 			(footprint "Diode_SMD:D_SOD-123")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Diode_SMD:D_SOD-123")
 				(field
@@ -1606,10 +1428,6 @@
 				(lib "Device")
 				(part "D_Zener")
 				(description "Zener diode")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1631,7 +1449,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "ab3aaae9-a4ff-558e-83b3-bcbab68b3baf")
+			(tstamps "d064bb11-b193-5f7d-a4fb-7008ce3e2dd8")
 			(units
 				(unit
 					(name "A")
@@ -1648,12 +1466,9 @@
 		)
 		(comp
 			(ref "D3")
-			(value "BAT54 clamp")
+			(value "BAT54")
 			(footprint "Diode_SMD:D_SOD-323")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Diode_SMD:D_SOD-323")
 				(field
@@ -1667,10 +1482,6 @@
 				(lib "Device")
 				(part "D_Schottky")
 				(description "Schottky diode")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1692,7 +1503,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "1f820f7f-ccdb-5af8-9b49-9129a386101e")
+			(tstamps "a8fd900c-bbc0-58e8-bbf2-a9feb6ac266f")
 			(units
 				(unit
 					(name "A")
@@ -1709,12 +1520,9 @@
 		)
 		(comp
 			(ref "D4")
-			(value "BAT54 clamp")
+			(value "BAT54")
 			(footprint "Diode_SMD:D_SOD-323")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Diode_SMD:D_SOD-323")
 				(field
@@ -1728,10 +1536,6 @@
 				(lib "Device")
 				(part "D_Schottky")
 				(description "Schottky diode")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1753,7 +1557,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "32174754-8229-5f09-a633-b349221dfa04")
+			(tstamps "e72ed29d-79e1-5fae-a49d-de93e95c53be")
 			(units
 				(unit
 					(name "A")
@@ -1770,12 +1574,9 @@
 		)
 		(comp
 			(ref "D5")
-			(value "LED green 0603")
+			(value "GREEN")
 			(footprint "LED_SMD:LED_0603_1608Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "LED_SMD:LED_0603_1608Metric")
 				(field
@@ -1789,10 +1590,6 @@
 				(lib "Device")
 				(part "LED")
 				(description "Light emitting diode")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1814,7 +1611,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "5f39c867-88cb-504e-bb63-12f68b884dd8")
+			(tstamps "f3715b8f-0848-5e70-8b4f-f42c80bc0633")
 			(units
 				(unit
 					(name "A")
@@ -1835,9 +1632,6 @@
 			(footprint "MountingHole:MountingHole_3.2mm_M3")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "MountingHole:MountingHole_3.2mm_M3")
 				(field
 					(name "Datasheet")
@@ -1850,10 +1644,6 @@
 				(lib "Mechanical")
 				(part "MountingHole")
 				(description "Mounting Hole without connection")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1875,7 +1665,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "8db04f7b-bacc-5f3f-b53d-c10ac10a7a5c")
+			(tstamps "ad36f7a7-ed4e-5096-9ef4-e83caf493215")
 			(units
 				(unit
 					(name "A")
@@ -1889,9 +1679,6 @@
 			(footprint "MountingHole:MountingHole_3.2mm_M3")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "MountingHole:MountingHole_3.2mm_M3")
 				(field
 					(name "Datasheet")
@@ -1904,10 +1691,6 @@
 				(lib "Mechanical")
 				(part "MountingHole")
 				(description "Mounting Hole without connection")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1929,7 +1712,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "259f2a87-9b09-5912-8f3d-ac420f5376ca")
+			(tstamps "4b420af8-44a6-5a40-98f2-e723139ccd12")
 			(units
 				(unit
 					(name "A")
@@ -1943,9 +1726,6 @@
 			(footprint "MountingHole:MountingHole_3.2mm_M3")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "MountingHole:MountingHole_3.2mm_M3")
 				(field
 					(name "Datasheet")
@@ -1958,10 +1738,6 @@
 				(lib "Mechanical")
 				(part "MountingHole")
 				(description "Mounting Hole without connection")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -1983,7 +1759,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "87cff504-6201-56cc-bdaf-45dbc540c262")
+			(tstamps "84a53252-9796-51fa-b1a6-d3da6072bdd6")
 			(units
 				(unit
 					(name "A")
@@ -1997,9 +1773,6 @@
 			(footprint "MountingHole:MountingHole_3.2mm_M3")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "MountingHole:MountingHole_3.2mm_M3")
 				(field
 					(name "Datasheet")
@@ -2012,10 +1785,6 @@
 				(lib "Mechanical")
 				(part "MountingHole")
 				(description "Mounting Hole without connection")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -2037,7 +1806,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "b9b66e32-6b00-5877-97f0-c40d0fce5a4a")
+			(tstamps "c636638c-6b95-50bf-830e-d321ba103190")
 			(units
 				(unit
 					(name "A")
@@ -2047,12 +1816,9 @@
 		)
 		(comp
 			(ref "H5")
-			(value "M3 (IMU bolt-through)")
+			(value "M3")
 			(footprint "MountingHole:MountingHole_3.2mm_M3")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "MountingHole:MountingHole_3.2mm_M3")
 				(field
@@ -2066,10 +1832,6 @@
 				(lib "Mechanical")
 				(part "MountingHole")
 				(description "Mounting Hole without connection")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -2091,7 +1853,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "f98d07da-238c-50d6-998d-8134899a1493")
+			(tstamps "59f84acb-0de7-54fc-b182-0195b6021bb9")
 			(units
 				(unit
 					(name "A")
@@ -2101,12 +1863,9 @@
 		)
 		(comp
 			(ref "J1")
-			(value "SOLAR Voc<3.5V, <=0.5W")
+			(value "SOLAR")
 			(footprint "Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal")
 				(field
@@ -2120,10 +1879,6 @@
 				(lib "Connector_Generic")
 				(part "Conn_01x02")
 				(description "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -2145,7 +1900,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "0bb8a3a5-e6b9-5740-bf8d-712986b285bd")
+			(tstamps "316363a6-8557-5e1a-ac3c-457a5dc1bb3b")
 			(units
 				(unit
 					(name "A")
@@ -2162,12 +1917,9 @@
 		)
 		(comp
 			(ref "J2")
-			(value "LiFePO4 1S")
+			(value "BATTERY")
 			(footprint "Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal")
 				(field
@@ -2181,10 +1933,6 @@
 				(lib "Connector_Generic")
 				(part "Conn_01x02")
 				(description "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -2206,7 +1954,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "bf2592a2-8e1b-59e1-aa43-a079e66672d6")
+			(tstamps "41699042-efdb-591b-8c40-e61baa49be98")
 			(units
 				(unit
 					(name "A")
@@ -2227,9 +1975,6 @@
 			(footprint "Connector_Coaxial:U.FL_Hirose_U.FL-R-SMT-1_Vertical")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Connector_Coaxial:U.FL_Hirose_U.FL-R-SMT-1_Vertical")
 				(field
 					(name "Datasheet")
@@ -2242,10 +1987,6 @@
 				(lib "Connector")
 				(part "Conn_Coaxial")
 				(description "coaxial connector (BNC, SMA, SMB, SMC, Cinch/RCA, LEMO, ...)")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -2267,7 +2008,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "8f574cad-3256-54d0-a478-7059a63950f6")
+			(tstamps "6c08f90e-102c-59d9-a253-f72ed2da02f9")
 			(units
 				(unit
 					(name "A")
@@ -2284,12 +2025,9 @@
 		)
 		(comp
 			(ref "J5")
-			(value "PIEZO disc")
+			(value "PIEZO")
 			(footprint "Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal")
 				(field
@@ -2303,10 +2041,6 @@
 				(lib "Connector_Generic")
 				(part "Conn_01x02")
 				(description "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -2328,7 +2062,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "9250c207-1aae-5ae2-a31c-9b6b9ef96780")
+			(tstamps "7cc4e881-83f0-5624-83a0-9d1cd390b3c6")
 			(units
 				(unit
 					(name "A")
@@ -2345,12 +2079,9 @@
 		)
 		(comp
 			(ref "J6")
-			(value "NFC coil")
+			(value "NFC_COIL")
 			(footprint "Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Connector_JST:JST_PH_S2B-PH-SM4-TB_1x02-1MP_P2.00mm_Horizontal")
 				(field
@@ -2364,10 +2095,6 @@
 				(lib "Connector_Generic")
 				(part "Conn_01x02")
 				(description "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -2389,7 +2116,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "6de31363-3d83-5079-8bd5-3423baf2a49d")
+			(tstamps "b00e5ee6-5e84-5023-83f8-38a1fab7141b")
 			(units
 				(unit
 					(name "A")
@@ -2406,12 +2133,9 @@
 		)
 		(comp
 			(ref "J7")
-			(value "Qwiic (GND,3V3,SDA,SCL)")
+			(value "QWIIC")
 			(footprint "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal")
 				(field
@@ -2425,10 +2149,6 @@
 				(lib "Connector_Generic")
 				(part "Conn_01x04")
 				(description "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -2450,7 +2170,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "a63c9a6f-78f3-5966-9c0e-7c29ea53f6a4")
+			(tstamps "cf16f5f3-6271-5ba7-8349-5a0258da3c0a")
 			(units
 				(unit
 					(name "A")
@@ -2473,12 +2193,9 @@
 		)
 		(comp
 			(ref "JP1")
-			(value "BATT/USB select")
+			(value "BATT/USB")
 			(footprint "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm")
 				(field
@@ -2492,10 +2209,6 @@
 				(lib "Jumper")
 				(part "SolderJumper_2_Open")
 				(description "Solder Jumper, 2-pole, open")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -2517,7 +2230,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "a265f270-a917-5c5d-921c-084685f4ea84")
+			(tstamps "d4d980b6-5b06-5f6a-8d2c-94123b5e21d1")
 			(units
 				(unit
 					(name "A")
@@ -2534,12 +2247,9 @@
 		)
 		(comp
 			(ref "L1")
-			(value "22uH Isat>=300mA")
+			(value "22uH")
 			(footprint "Inductor_SMD:L_Taiyo-Yuden_NR-40xx")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Inductor_SMD:L_Taiyo-Yuden_NR-40xx")
 				(field
@@ -2553,10 +2263,6 @@
 				(lib "Device")
 				(part "L")
 				(description "Inductor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -2578,7 +2284,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "e1dbc86f-7dd8-5a0a-be37-c590636f5433")
+			(tstamps "d26aea32-c4f8-5e5a-bb09-5ba93173c98f")
 			(units
 				(unit
 					(name "A")
@@ -2595,12 +2301,9 @@
 		)
 		(comp
 			(ref "L2")
-			(value "2.2uH Isat>=2A")
+			(value "2.2uH")
 			(footprint "Inductor_SMD:L_Taiyo-Yuden_NR-40xx")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Inductor_SMD:L_Taiyo-Yuden_NR-40xx")
 				(field
@@ -2614,10 +2317,6 @@
 				(lib "Device")
 				(part "L")
 				(description "Inductor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -2639,7 +2338,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "335c78ab-e727-5bb2-8816-0efe6d25b4fd")
+			(tstamps "ca660891-daca-5e91-8712-833833836449")
 			(units
 				(unit
 					(name "A")
@@ -2660,9 +2359,6 @@
 			(footprint "SylvaEcho:XIAO_nRF52840_SMD")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "SylvaEcho:XIAO_nRF52840_SMD")
 				(field
 					(name "Datasheet")
@@ -2677,10 +2373,6 @@
 				(description "Seeed XIAO nRF52840")
 			)
 			(property
-				(name "LCSC")
-				(value "")
-			)
-			(property
 				(name "Sheetname")
 				(value "")
 			)
@@ -2692,7 +2384,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "db0b058c-09b2-5ef2-b639-0718aef1a786")
+			(tstamps "865c4d40-af25-5777-8084-c5db46023c45")
 			(units
 				(unit
 					(name "A")
@@ -2761,9 +2453,6 @@
 			(footprint "SylvaEcho:Wio-SX1262-N_SMT12")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "SylvaEcho:Wio-SX1262-N_SMT12")
 				(field
 					(name "Datasheet")
@@ -2778,10 +2467,6 @@
 				(description "Wio-SX1262-N")
 			)
 			(property
-				(name "LCSC")
-				(value "")
-			)
-			(property
 				(name "Sheetname")
 				(value "")
 			)
@@ -2793,7 +2478,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "9ae76022-c963-50bf-ba8a-8684265de358")
+			(tstamps "ddd96a91-6feb-5b5e-8198-dcffe3427228")
 			(units
 				(unit
 					(name "A")
@@ -2840,12 +2525,9 @@
 		)
 		(comp
 			(ref "R1")
-			(value "6.65M 1% ROV1")
+			(value "6.65M 1%")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
@@ -2859,10 +2541,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -2884,7 +2562,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "fc2feedd-634e-5f73-878d-5460be128939")
+			(tstamps "13126c0c-8a42-55a7-9ceb-8472628a57c8")
 			(units
 				(unit
 					(name "A")
@@ -2901,12 +2579,9 @@
 		)
 		(comp
 			(ref "R2")
-			(value "6.34M 1% ROV2")
+			(value "6.34M 1%")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
@@ -2920,10 +2595,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -2945,7 +2616,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "7a0c96a1-c9f4-5a9c-9523-f1ca68605700")
+			(tstamps "b72451a4-ef04-5ba5-a451-48a66aa48d11")
 			(units
 				(unit
 					(name "A")
@@ -2962,12 +2633,9 @@
 		)
 		(comp
 			(ref "R3")
-			(value "1.13M 1% ROK3")
+			(value "1.13M 1%")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
@@ -2981,10 +2649,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3006,7 +2670,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "1cec78a4-97fe-52ef-a1fa-0dc7ddf41bcc")
+			(tstamps "144ecad3-c2e8-599a-a588-08c5ff17854d")
 			(units
 				(unit
 					(name "A")
@@ -3023,12 +2687,9 @@
 		)
 		(comp
 			(ref "R4")
-			(value "6.65M 1% ROK2")
+			(value "6.65M 1%")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
@@ -3042,10 +2703,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3067,7 +2724,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "466c06de-1b79-5a88-8869-92d36fbfb5d2")
+			(tstamps "dcb0a421-28f6-57a2-8f6b-6a64f5b953aa")
 			(units
 				(unit
 					(name "A")
@@ -3084,12 +2741,9 @@
 		)
 		(comp
 			(ref "R5")
-			(value "5.11M 1% ROK1")
+			(value "5.11M 1%")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
@@ -3103,10 +2757,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3128,7 +2778,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "9ed55922-b93f-51a9-89ef-d93510466c35")
+			(tstamps "414dae0b-a082-571b-9fc4-18749de198a7")
 			(units
 				(unit
 					(name "A")
@@ -3149,9 +2799,6 @@
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -3164,10 +2811,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3189,7 +2832,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "1fab7fed-ccba-55c9-92a3-5a2166947784")
+			(tstamps "d7b5d69b-dce9-578e-9077-a4f9d7deec35")
 			(units
 				(unit
 					(name "A")
@@ -3206,12 +2849,9 @@
 		)
 		(comp
 			(ref "R7")
-			(value "36.5k 1% CFG1")
+			(value "36.5k 1%")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
@@ -3225,10 +2865,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3250,7 +2886,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "c90ff162-11b2-561b-b714-c751e7f5cf7d")
+			(tstamps "fb0115ae-3ddf-59fb-bd2a-d74fc8715d15")
 			(units
 				(unit
 					(name "A")
@@ -3267,12 +2903,9 @@
 		)
 		(comp
 			(ref "R8")
-			(value "0R CFG2 unlimited")
+			(value "0R")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
@@ -3286,10 +2919,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3311,7 +2940,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "76e3eeba-76b5-5883-b725-723d23780f1d")
+			(tstamps "3b652b22-8c8d-5849-954b-48c687d92972")
 			(units
 				(unit
 					(name "A")
@@ -3328,12 +2957,9 @@
 		)
 		(comp
 			(ref "R9")
-			(value "16.2k 1% CFG3 3.3V")
+			(value "16.2k 1%")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
@@ -3347,10 +2973,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3372,7 +2994,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "af624563-1fe8-5acd-b479-a3d39783d118")
+			(tstamps "07a8091e-9f33-5ff3-ab4e-ba162e48fbbd")
 			(units
 				(unit
 					(name "A")
@@ -3393,9 +3015,6 @@
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -3408,10 +3027,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3433,7 +3048,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "898f8ac6-b3a2-57cc-992a-7d26244aa56e")
+			(tstamps "9f02f2b8-0877-5e28-a0a1-f0643aa841f2")
 			(units
 				(unit
 					(name "A")
@@ -3454,9 +3069,6 @@
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -3469,10 +3081,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3494,7 +3102,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "98e27fa0-e32a-5ec0-8a40-40f717ec8473")
+			(tstamps "8c9de420-0420-5ffb-a40a-9874042150f2")
 			(units
 				(unit
 					(name "A")
@@ -3515,9 +3123,6 @@
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -3530,10 +3135,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3555,7 +3156,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "8669e184-3346-5e91-bb8a-e39f0c2d0fc9")
+			(tstamps "e8cd6e5c-831a-5643-895e-a1c3798ee02a")
 			(units
 				(unit
 					(name "A")
@@ -3576,9 +3177,6 @@
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -3591,10 +3189,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3616,7 +3210,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "3ce376a2-90d5-5e5f-89ec-e81bf6450d09")
+			(tstamps "1a253c55-3f00-51a0-bb4a-604290244694")
 			(units
 				(unit
 					(name "A")
@@ -3633,12 +3227,9 @@
 		)
 		(comp
 			(ref "R14")
-			(value "0R (pi-match series)")
+			(value "0R")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
@@ -3652,10 +3243,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3677,7 +3264,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "df0ce373-dafa-560f-add7-2898eee89411")
+			(tstamps "247dd5fd-a52c-5579-9d22-6c95c8a4e18e")
 			(units
 				(unit
 					(name "A")
@@ -3694,12 +3281,9 @@
 		)
 		(comp
 			(ref "R15")
-			(value "1M (bleed)")
+			(value "1M")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
@@ -3713,10 +3297,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3738,7 +3318,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "7025a4c7-813c-5324-822f-31c3104d5b56")
+			(tstamps "4573a2fc-31a3-58e8-b612-717391ef8369")
 			(units
 				(unit
 					(name "A")
@@ -3755,12 +3335,9 @@
 		)
 		(comp
 			(ref "R16")
-			(value "100k (LP)")
+			(value "100k")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
@@ -3774,10 +3351,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3799,7 +3372,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "eca854d0-308a-5e4d-8c70-987fc7027089")
+			(tstamps "bf4b5e0c-7a0e-5caa-b0be-b468403e5a6e")
 			(units
 				(unit
 					(name "A")
@@ -3816,12 +3389,9 @@
 		)
 		(comp
 			(ref "R17")
-			(value "10M (bias)")
+			(value "10M")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
@@ -3835,10 +3405,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3860,7 +3426,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "69bd5fa5-ccf9-5d38-84dd-0a68545bc306")
+			(tstamps "9a12880e-dea7-56b2-8841-acfe93e2320d")
 			(units
 				(unit
 					(name "A")
@@ -3877,12 +3443,9 @@
 		)
 		(comp
 			(ref "R18")
-			(value "10M (bias)")
+			(value "10M")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
@@ -3896,10 +3459,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3921,7 +3480,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "0fb7a15a-5d93-5c3c-bec4-6ab12854b213")
+			(tstamps "fb8db241-6ed4-5e9f-afe1-7f841a698b6c")
 			(units
 				(unit
 					(name "A")
@@ -3938,12 +3497,9 @@
 		)
 		(comp
 			(ref "R19")
-			(value "10M (threshold)")
+			(value "10M")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
@@ -3957,10 +3513,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -3982,7 +3534,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "deaca198-598a-53ed-bb63-d7477b7d24cc")
+			(tstamps "088a3921-320c-5015-a4c6-3c8d8d3dcf5b")
 			(units
 				(unit
 					(name "A")
@@ -3999,12 +3551,9 @@
 		)
 		(comp
 			(ref "R20")
-			(value "9.1M (threshold, tune)")
+			(value "9.1M*")
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
@@ -4018,10 +3567,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -4043,7 +3588,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "400e80bd-61c3-55be-91e2-defc6c43329f")
+			(tstamps "933e6882-2e92-53e7-935a-9eda2eddecb1")
 			(units
 				(unit
 					(name "A")
@@ -4064,9 +3609,6 @@
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -4079,10 +3621,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -4104,7 +3642,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "0ee63766-3493-57db-b778-efc30c38b294")
+			(tstamps "8609cd5e-6a86-570b-860a-77a8b0ae5e47")
 			(units
 				(unit
 					(name "A")
@@ -4125,9 +3663,6 @@
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -4140,10 +3675,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -4165,7 +3696,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "d6f11910-a895-5a8e-92b5-a6d03ab9707c")
+			(tstamps "eac980f9-5fd7-5d32-b5e4-053ed2775ac9")
 			(units
 				(unit
 					(name "A")
@@ -4186,9 +3717,6 @@
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -4201,10 +3729,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -4226,7 +3750,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "d09b60a3-55f3-5d9e-bab4-a0a5653867eb")
+			(tstamps "fcf7cc1a-8eb5-54d5-a867-3cbe73c2a7f6")
 			(units
 				(unit
 					(name "A")
@@ -4247,9 +3771,6 @@
 			(footprint "Resistor_SMD:R_0402_1005Metric")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Resistor_SMD:R_0402_1005Metric")
 				(field
 					(name "Datasheet")
@@ -4262,10 +3783,6 @@
 				(lib "Device")
 				(part "R")
 				(description "Resistor")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -4287,7 +3804,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "e612b5a5-ee9d-5f09-9a94-be8bbbbfcc36")
+			(tstamps "19cf6006-500d-5a97-a983-c0449723d041")
 			(units
 				(unit
 					(name "A")
@@ -4308,9 +3825,6 @@
 			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
 				(field
 					(name "Datasheet")
@@ -4323,10 +3837,6 @@
 				(lib "Connector")
 				(part "TestPoint")
 				(description "test point")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -4348,7 +3858,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "91956f84-85b8-52a9-a976-6e5ec5718ae0")
+			(tstamps "e48e3ff6-5235-5761-82e6-64e301bbe561")
 			(units
 				(unit
 					(name "A")
@@ -4366,9 +3876,6 @@
 			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
 				(field
 					(name "Datasheet")
@@ -4381,10 +3888,6 @@
 				(lib "Connector")
 				(part "TestPoint")
 				(description "test point")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -4406,7 +3909,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "2113db66-562f-500e-a601-49f06ad60979")
+			(tstamps "a83753eb-34d9-5854-ad01-7f54542bcaf1")
 			(units
 				(unit
 					(name "A")
@@ -4424,9 +3927,6 @@
 			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
 				(field
 					(name "Datasheet")
@@ -4439,10 +3939,6 @@
 				(lib "Connector")
 				(part "TestPoint")
 				(description "test point")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -4464,7 +3960,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "43f3b761-6066-51cf-be08-bf2160663e8e")
+			(tstamps "44533ae3-9490-575a-a27c-e4c7e815abdb")
 			(units
 				(unit
 					(name "A")
@@ -4482,9 +3978,6 @@
 			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
 				(field
 					(name "Datasheet")
@@ -4497,10 +3990,6 @@
 				(lib "Connector")
 				(part "TestPoint")
 				(description "test point")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -4522,7 +4011,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "b727be99-6800-50ff-aeae-00d188e67c3f")
+			(tstamps "56239c1d-80b6-55f1-8b8a-5b00f9d61310")
 			(units
 				(unit
 					(name "A")
@@ -4540,9 +4029,6 @@
 			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
 				(field
 					(name "Datasheet")
@@ -4555,10 +4041,6 @@
 				(lib "Connector")
 				(part "TestPoint")
 				(description "test point")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -4580,7 +4062,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "8994d928-8e0c-5891-9e54-c9ff5c47ed8a")
+			(tstamps "9a2f96a9-8938-50df-8bfe-8aa89705ad30")
 			(units
 				(unit
 					(name "A")
@@ -4598,9 +4080,6 @@
 			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
 				(field
 					(name "Datasheet")
@@ -4613,10 +4092,6 @@
 				(lib "Connector")
 				(part "TestPoint")
 				(description "test point")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -4638,7 +4113,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "07b8d249-ffa8-50ad-89f3-0630a9ad6f87")
+			(tstamps "4412f06b-bfa1-528b-9b57-3f5e972fdbe9")
 			(units
 				(unit
 					(name "A")
@@ -4656,9 +4131,6 @@
 			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
 				(field
 					(name "Datasheet")
@@ -4671,10 +4143,6 @@
 				(lib "Connector")
 				(part "TestPoint")
 				(description "test point")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -4696,7 +4164,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "8a294ac0-cd3a-5290-9321-73f4546abd52")
+			(tstamps "f837b998-d789-562d-8105-031a382a4439")
 			(units
 				(unit
 					(name "A")
@@ -4714,9 +4182,6 @@
 			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
 				(field
 					(name "Datasheet")
@@ -4729,10 +4194,6 @@
 				(lib "Connector")
 				(part "TestPoint")
 				(description "test point")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -4754,7 +4215,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "d8ac0321-a01f-57ef-b25a-60c9f9da589b")
+			(tstamps "d1a790eb-555f-5bf0-87f8-d2349d80b985")
 			(units
 				(unit
 					(name "A")
@@ -4772,9 +4233,6 @@
 			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
 				(field
 					(name "Datasheet")
@@ -4787,10 +4245,6 @@
 				(lib "Connector")
 				(part "TestPoint")
 				(description "test point")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -4812,7 +4266,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "54082ecf-a2c6-5af3-a59c-79b1fdd696f6")
+			(tstamps "e108d15f-491b-50ee-98e2-9a0e95832056")
 			(units
 				(unit
 					(name "A")
@@ -4830,9 +4284,6 @@
 			(footprint "TestPoint:TestPoint_Pad_D1.5mm")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "TestPoint:TestPoint_Pad_D1.5mm")
 				(field
 					(name "Datasheet")
@@ -4845,10 +4296,6 @@
 				(lib "Connector")
 				(part "TestPoint")
 				(description "test point")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -4870,7 +4317,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "9da753e2-51eb-520e-a732-37d4c835d4cf")
+			(tstamps "f9c0a95b-d3f7-5382-9916-c3cbc96aec4d")
 			(units
 				(unit
 					(name "A")
@@ -4888,9 +4335,6 @@
 			(footprint "Package_DFN_QFN:QFN-20-1EP_3.5x3.5mm_P0.5mm_EP2x2mm")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Package_DFN_QFN:QFN-20-1EP_3.5x3.5mm_P0.5mm_EP2x2mm")
 				(field
 					(name "Datasheet")
@@ -4903,10 +4347,6 @@
 				(lib "Battery_Management")
 				(part "BQ25570")
 				(description "Nano Power Boost Charger and Buck Converter for Energy Harvester Powered Applications, QFN-20")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -4928,7 +4368,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "179816a7-9f2a-5d2d-8ead-61e0e336691b")
+			(tstamps "666a1354-c976-5d57-932c-86da7a27ed16")
 			(units
 				(unit
 					(name "A")
@@ -5006,9 +4446,6 @@
 			(footprint "Package_SON:WSON-10-1EP_2.5x2.5mm_P0.5mm_EP1.2x2mm_ThermalVias")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Package_SON:WSON-10-1EP_2.5x2.5mm_P0.5mm_EP1.2x2mm_ThermalVias")
 				(field
 					(name "Datasheet")
@@ -5021,10 +4458,6 @@
 				(lib "Regulator_Switching")
 				(part "TPS63900")
 				(description "Buck-Boost Converter, 1.8-5.5V Input Voltage, 0.4A Switch Current, Adjustable 1.8-5V Output Voltage, WSON-10")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -5046,7 +4479,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "a7ca93bf-1aca-57ea-8d94-b74798d6c5ad")
+			(tstamps "600d146e-5d79-57fe-8719-0fac542df794")
 			(units
 				(unit
 					(name "A")
@@ -5090,12 +4523,9 @@
 		)
 		(comp
 			(ref "U3")
-			(value "TLV7041 (open-drain)")
+			(value "TLV7041")
 			(footprint "Package_TO_SOT_SMD:SOT-23-5")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-5")
 				(field
@@ -5109,10 +4539,6 @@
 				(lib "Comparator")
 				(part "TLV7041DBV")
 				(description "Single, 1.6V-6.5V, 315nA Quiescent, Open-Drain Output, Comparator, North-west pinout, SOT-23-5")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -5134,7 +4560,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "754e5bbb-5fa3-54b4-8579-9222babb6ccc")
+			(tstamps "be49659e-b8bf-572e-be1d-3b4526233593")
 			(units
 				(unit
 					(name "A")
@@ -5160,12 +4586,9 @@
 		)
 		(comp
 			(ref "U4")
-			(value "LSM6DSOX (pin-compatible LGA-14)")
+			(value "LSM6DSOX")
 			(footprint "Package_LGA:LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Package_LGA:LGA-14_3x2.5mm_P0.5mm_LayoutBorder3x4y")
 				(field
@@ -5179,10 +4602,6 @@
 				(lib "Sensor_Motion")
 				(part "LSM6DSM")
 				(description "I2C/SPI, iNEMO inertial module: always-on 3D accelerometer and 3D gyroscope, with auxiliary SPI, 1.71V to 3.6V VCC")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -5204,7 +4623,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "6ffe8db0-aac1-512d-9928-f452ab169eef")
+			(tstamps "723f98bc-0479-587b-82d7-7dba3c2a425e")
 			(units
 				(unit
 					(name "A")
@@ -5261,9 +4680,6 @@
 			(footprint "Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Package_LGA:Bosch_LGA-8_2.5x2.5mm_P0.65mm_ClockwisePinNumbering")
 				(field
 					(name "Datasheet")
@@ -5276,10 +4692,6 @@
 				(lib "Sensor")
 				(part "BME280")
 				(description "3-in-1 sensor, humidity, pressure, temperature, I2C and SPI interface, 1.71-3.6V, LGA-8")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -5301,7 +4713,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "9c8ef392-bb81-5b24-a978-21743b9043fe")
+			(tstamps "e23cc0f0-487e-5cc1-b4f4-203ed4d1942c")
 			(units
 				(unit
 					(name "A")
@@ -5340,9 +4752,6 @@
 			(footprint "Package_TO_SOT_SMD:SOT-23-6")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-6")
 				(field
 					(name "Datasheet")
@@ -5355,10 +4764,6 @@
 				(lib "Power_Management")
 				(part "TPS22917DBV")
 				(description "1V to 5.5V, 2A, 80mΩ Ultra-Low Leakage Load Switch, SOT23-6")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -5380,7 +4785,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "c626ce87-96c6-5174-a533-311c34a9634c")
+			(tstamps "a5be1c3b-add3-51eb-8d4a-da26acc674fd")
 			(units
 				(unit
 					(name "A")
@@ -5409,12 +4814,9 @@
 		)
 		(comp
 			(ref "U7")
-			(value "SPH0641LU4H-1 (bottom-port PDM)")
+			(value "SPH0641LU4H-1")
 			(footprint "Sensor_Audio:Knowles_LGA-5_3.5x2.65mm")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Sensor_Audio:Knowles_LGA-5_3.5x2.65mm")
 				(field
@@ -5428,10 +4830,6 @@
 				(lib "Sensor_Audio")
 				(part "SPH0641LU4H-1")
 				(description "Digital MEMS Microphone, LGA-5")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -5453,7 +4851,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "531f8574-ac50-56ab-89c5-0458dfc2c0ca")
+			(tstamps "e85c2f77-a31e-5674-8261-8daa2d3c1e1b")
 			(units
 				(unit
 					(name "A")
@@ -5479,12 +4877,9 @@
 		)
 		(comp
 			(ref "U8")
-			(value "TCA9534 (I2C 0x20)")
+			(value "TCA9534")
 			(footprint "Package_SO:TSSOP-16_4.4x5mm_P0.65mm")
 			(fields
-				(field
-					(name "LCSC")
-				)
 				(field
 					(name "Footprint") "Package_SO:TSSOP-16_4.4x5mm_P0.65mm")
 				(field
@@ -5498,10 +4893,6 @@
 				(lib "Interface_Expansion")
 				(part "TCA9534")
 				(description "8-bit I/O Expander, I2C / SMBus interface, interrupt output, fixed address bits 0b0100xxx, TSSOP-16 / SOIC-16")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -5523,7 +4914,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "ef46da3b-0797-5c74-b2cc-b182acb2fc99")
+			(tstamps "1bd6526c-49b6-5377-80fc-d9298b8cda66")
 			(units
 				(unit
 					(name "A")
@@ -5586,9 +4977,6 @@
 			(footprint "Package_TO_SOT_SMD:SOT-23-6")
 			(fields
 				(field
-					(name "LCSC")
-				)
-				(field
 					(name "Footprint") "Package_TO_SOT_SMD:SOT-23-6")
 				(field
 					(name "Datasheet")
@@ -5601,10 +4989,6 @@
 				(lib "Power_Protection")
 				(part "USBLC6-2SC6")
 				(description "Very low capacitance ESD protection diode, 2 data-line, SOT-23-6")
-			)
-			(property
-				(name "LCSC")
-				(value "")
 			)
 			(property
 				(name "Sheetname")
@@ -5626,7 +5010,7 @@
 				(names "/")
 				(tstamps "/")
 			)
-			(tstamps "f18933ff-1ed2-5828-b384-68a4e0df8eca")
+			(tstamps "33ec490f-a5a5-57c8-af7c-d21e2c94e64f")
 			(units
 				(unit
 					(name "A")
