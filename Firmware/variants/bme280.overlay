@@ -1,0 +1,10 @@
+/*
+ * Board rev 0.3: Bosch BME280 (U5, LCSC C92489) on I2C at 0x76 (SDO to GND).
+ */
+
+&xiao_i2c {
+	env: bme280@76 {
+		compatible = "bosch,bme280";
+		reg = <0x76>;
+	};
+};

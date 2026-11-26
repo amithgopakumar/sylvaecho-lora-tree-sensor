@@ -1,0 +1,13 @@
+/*
+ * Board rev 0.4: Bosch BME680 (U5, LCSC C125972) on I2C at 0x76 (SDO to GND).
+ * Same pinout as the BME280; it adds a gas sensor. The Zephyr driver runs
+ * the gas heater (320 degC, about 200 ms) on every sample fetch, which costs
+ * roughly 1-2 uA on average at one reading every 30 minutes.
+ */
+
+&xiao_i2c {
+	env: bme680@76 {
+		compatible = "bosch,bme680";
+		reg = <0x76>;
+	};
+};

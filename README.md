@@ -24,9 +24,9 @@ Between listening windows the microphone rail is switched off. The design target
 | LoRa radio | Seeed Wio-SX1262 SMT module, up to +22 dBm, U.FL antenna |
 | Microphone | Knowles SPH0641LU4H-1 PDM MEMS microphone (bottom port) |
 | Motion / tilt | ST LSM6DSOX 6-axis IMU |
-| Environment | Bosch BME280 (temperature, humidity, pressure) |
+| Environment | Bosch BME680 on rev 0.4, BME280 on rev 0.3 (temperature, humidity, pressure) |
 | Trunk vibration wake | Piezo disc + TLV7041 nanopower comparator |
-| Solar harvesting | TI BQ25570 with MPPT, charging a LiFePO4 18650 |
+| Solar harvesting | TI BQ25570 with MPPT, charging one LiFePO4 cell |
 | 3.3 V supply | TI TPS63900 buck-boost |
 | I/O expander | TI TCA9534 |
 | Mic power switch | TI TPS22917 load switch |
@@ -34,22 +34,38 @@ Between listening windows the microphone rail is switched off. The design target
 
 The board is 4-layer, 60 × 45 mm, 1.6 mm FR-4.
 
+### Board versions
+
+The two versions differ only in the environment sensor U5. Both sensors use the same pin order and the same I2C address (0x76), so the schematic, firmware and LoRa report are the same.
+
+| Version | U5 | LCSC part | Footprint | Files |
+|---|---|---|---|---|
+| Rev 0.4 (current) | Bosch BME680 | C125972 | LGA-8, 3.0 × 3.0 mm, 0.8 mm pitch | `PCB/BME680_rev0.4/` |
+| Rev 0.3 | Bosch BME280 | C92489 | LGA-8, 2.5 × 2.5 mm, 0.65 mm pitch | `PCB/BME280_rev0.3/` |
+
+Rev 0.4 was made because the BME280 went out of stock at JLCPCB. The BME680 also has a gas (VOC) sensor; the firmware reads only temperature, humidity and pressure from it.
+
 ![Block diagram](Images/block_diagram.jpg)
 
 ### Solar panel and battery
 
-- **Battery:** one LiFePO4 18650 cell. The charger stops at 3.51 V and the system cuts off at about 2.8 V.
+- **Battery:** one LiFePO4 cell, for example an IFR18500 (the enclosure size) or an IFR18650. The charger stops at 3.51 V and the system cuts off at about 2.8 V.
 - **Solar panel:** 0.3–0.5 W with an open-circuit voltage (Voc) **below 3.1 V**. A 4-cell panel sold as "2 V" (Voc around 2.4–2.6 V) fits. Panels sold as "3 V" usually have a Voc of 3.5–3.6 V, which is too high for this charger setting.
 
 ## Repository layout
 
 ```
 PCB/
-  easyeda/        EasyEDA Pro project (schematic and routed PCB)
-  fabrication/    Gerber files, JLCPCB BOM and pick-and-place files
+  BME680_rev0.4/
+    easyeda/      EasyEDA Pro project, rev 0.4 (schematic and routed PCB)
+    fabrication/  Gerber files, JLCPCB BOM and pick-and-place files
+  BME280_rev0.3/
+    easyeda/      EasyEDA Pro project, rev 0.3
+    fabrication/  Gerber files, JLCPCB BOM and pick-and-place files
   footprints/     Custom KiCad footprints (XIAO SMD, mic, jumper, test point, mounting hole)
-  schematic/      KiCad schematic, netlist, BOM and PDF
-Firmware/         Zephyr firmware for the XIAO nRF52840
+  schematic/      Original KiCad schematic (BME280), netlist, BOM and PDF
+Firmware/         Zephyr firmware for the XIAO nRF52840 (both board versions)
+  variants/       Environment sensor overlay for each board version
 Images/           Renders, block diagram and schematic preview
 ```
 
@@ -62,13 +78,21 @@ west build -b xiao_ble/nrf52840 Firmware
 west flash
 ```
 
+This builds for rev 0.4 (BME680). For a rev 0.3 board (BME280):
+
+```
+west build -b xiao_ble/nrf52840 Firmware -- -DSENSOR=bme280
+```
+
+Run `west build -p` after switching between the two so the build directory is regenerated.
+
 Schedule, detection thresholds and LoRa settings are in `Firmware/src/config.h`. The default LoRa channel is 865.0625 MHz (IN865); change it for EU868 or US915. Logs go out over Segger RTT, because the UART pins are used by the microphone.
 
 ## Ordering the board
 
-1. Open `PCB/easyeda/SylvaEcho_rev0.3.epro` in EasyEDA Pro (File > Import), or use the files in `PCB/fabrication/` directly.
+1. Open `PCB/BME680_rev0.4/easyeda/SylvaEcho_rev0.4_BME680.epro` in EasyEDA Pro (File > Import), or use the files in `PCB/BME680_rev0.4/fabrication/` directly. For the BME280 version use `PCB/BME280_rev0.3/`.
 2. PCB: 4 layers, 1.6 mm, lead-free HASL.
-3. Assembly: upload `JLC_BOM_SylvaEcho_PCB2.csv` and `JLC_CPL_SylvaEcho_PCB2.csv`. All placed parts are on the top side.
+3. Assembly (Standard PCBA, top side): upload the `JLC_BOM_*.csv` and `JLC_CPL_*.csv` files from the same folder. JLCPCB flags the SPH0641 microphone (U7) for a manual review after the order is placed.
 4. Hand-solder the XIAO nRF52840 (M1) and the Wio-SX1262 module (M2) after assembly. C11 and C12 are optional antenna-matching parts and are not fitted by default.
 
 ## Status
@@ -76,8 +100,8 @@ Schedule, detection thresholds and LoRa settings are in `Firmware/src/config.h`.
 | Item | State |
 |---|---|
 | Schematic | Rev 0.3 |
-| PCB layout | Routed, DRC checked |
-| Prototype boards | Quoted at JLCPCB (5 PCBs, 2 assembled), waiting for sponsorship approval |
+| PCB layout | Rev 0.4 (BME680) routed and DRC checked; rev 0.3 (BME280) kept |
+| Prototype boards | Rev 0.4 quoted at JLCPCB (5 PCBs, 2 assembled), waiting for sponsorship approval |
 | MVP | Being built on development boards with the same sensors |
 | Firmware | First version; detection thresholds are placeholders until the classifier is trained |
 | Field test | Planned |

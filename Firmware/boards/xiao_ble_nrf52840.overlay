@@ -1,10 +1,10 @@
 /*
- * SylvaEcho carrier board, rev 0.1
+ * SylvaEcho carrier board (rev 0.3 BME280, rev 0.4 BME680)
  *
  * XIAO pin map
  *   D0  WAKE_N      piezo comparator + LSM6DSOX INT1 (open-drain, active low)
  *   D1  LORA_NSS    D2 LORA_BUSY    D3 LORA_DIO1
- *   D4  I2C SDA     D5 I2C SCL      (LSM6DSOX 0x6A, BME280 0x76, TCA9534 0x20)
+ *   D4  I2C SDA     D5 I2C SCL      (LSM6DSOX 0x6A, BME680/BME280 0x76, TCA9534 0x20)
  *   D6  PDM CLK     D7 PDM DATA     (P1.11 / P1.12)
  *   D8  SPI SCK     D9 SPI MISO     D10 SPI MOSI
  *
@@ -53,10 +53,9 @@
 		reg = <0x6a>;
 	};
 
-	env: bme280@76 {
-		compatible = "bosch,bme280";
-		reg = <0x76>;
-	};
+	/* Environment sensor (node label "env", address 0x76) is added by
+	 * variants/bme680.overlay or variants/bme280.overlay; see CMakeLists.txt.
+	 */
 };
 
 &xiao_spi {
