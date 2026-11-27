@@ -48,14 +48,16 @@ function useAnimated(target: number, ms = 700) {
     const t0 = performance.now();
     let raf = 0;
     const step = (t: number) => {
-      const k = Math.min(1, (t - t0) / ms);
+      const k = clamp((t - t0) / ms, 0, 1); /* rAF time can precede t0 */
       const e = 1 - Math.pow(1 - k, 3);
       cur.current = from.current + (target - from.current) * e;
       setV(cur.current);
       if (k < 1) raf = requestAnimationFrame(step);
     };
     raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
+    /* Frames stop in background tabs: make sure the value still lands. */
+    const done = setTimeout(() => { cancelAnimationFrame(raf); cur.current = target; setV(target); }, ms + 80);
+    return () => { cancelAnimationFrame(raf); clearTimeout(done); };
   }, [target, ms]);
   return v;
 }
@@ -234,6 +236,9 @@ export default function Dashboard() {
   /* --------------------------------------------------------- parallax */
   useEffect(() => {
     if (rec) document.body.classList.add("rec");
+    /* ?shot: flat, still layout for screenshots (no 3D tilt, no parallax). */
+    const shot = new URLSearchParams(location.search).has("shot");
+    if (shot) { document.body.classList.add("shot"); return; }
     let tx = 0, ty = 0, sx = 0, sy = 0, raf = 0;
     const move = (e: PointerEvent) => { tx = (e.clientX / innerWidth) * 2 - 1; ty = (e.clientY / innerHeight) * 2 - 1; };
     const loop = () => {

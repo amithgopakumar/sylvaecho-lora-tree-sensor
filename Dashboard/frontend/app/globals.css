@@ -318,12 +318,14 @@ svg { display: block; }
   .mode { right: 1.6rem; top: 2rem; }
   .tabs { position: relative; left: auto; top: auto; transform: none; animation: none; overflow-x: auto; max-width: 100%; margin-bottom: 1.6rem; scrollbar-width: none; }
   .rail { display: none; }
-  .win { position: relative; left: auto; top: auto; width: auto; height: auto; padding: 1.4rem; border-radius: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; animation: none; }
+  .win { position: relative; left: auto; top: auto; width: auto; height: auto; padding: 1.4rem; border-radius: 3rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.2rem; animation: none; }
   .card { position: relative; left: auto !important; top: auto !important; width: auto !important; }
   .cam { grid-column: 1 / -1; height: auto !important; aspect-ratio: 16 / 9; }
   .cam.big { position: relative; border-radius: 2.8rem; }
   .dial { grid-column: 1 / -1; height: 47rem !important; }
   .cam .nodes { display: none; }
+  .cam { order: 1; } .dial { order: 2; } .scene { order: 3; } .slider { order: 4; }
+  .guard { order: 5; } .batt { order: 6; } .player { order: 7; }
   .scene, .slider { height: 7rem !important; }
   .guard, .batt { height: 22rem !important; }
   .player { grid-column: 1 / -1; height: auto !important; }
@@ -342,9 +344,14 @@ svg { display: block; }
 .rec, .rec * { cursor: none !important; }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
 
 /* keep toggles inside narrow cards; keep chips on one line */
 .guard .ft > div, .batt .ft > div { min-width: 0; }
 .chip { white-space: nowrap; }
+
+/* ?shot: flat layout for screenshots */
+.shot #stage { perspective: none; }
+.shot #ui { transform: none !important; transform-style: flat; }
+.shot #room { transform: scale(1.04) !important; }

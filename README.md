@@ -171,6 +171,8 @@ npm install && npm run dev                      # http://localhost:3000
 
 The backend stores every report in SQLite and pushes it to the browser over a WebSocket. Reports arrive from the Arduino gateway's HTTP POST (`HTTP_URL = "http://<pc>:8000/api/ingest"`, optional `INGEST_TOKEN`) or from MQTT (`MQTT_HOST=<broker>` subscribes to `sylvaecho/+/+`, which works with both gateways). Demo data is labelled "Demo data" in the corner and `"demo": true` in the API; leave `DEMO` unset for real nodes.
 
+![Canopy dashboard, desktop (demo data)](Images/dashboard_desktop.jpg)
+
 The front end is a spatial glass window over the forest photo, with mouse parallax and a fluid 1440 x 810 layout (a stacked layout on phones):
 
 - **Tabs:** all trees, or one tree each. Switching wipes the node view and rolls the card titles.
@@ -182,6 +184,8 @@ The front end is a spatial glass window over the forest photo, with mouse parall
 - **Battery:** the SC-1 state of charge, current and cell temperature.
 - **Timeline:** drag back through the last day. The forest behind the glass darkens for night hours.
 - **Soundscape:** steps through recent highlights: dawn chorus, pollinators, rain, borer clicks and alerts.
+
+Open `http://localhost:3000/?shot` for a flat, still layout for screenshots.
 
 The slope-risk index (0-100) combines 24 h and 3-day rain, soil moisture and tree tilt. It is a screening heuristic for the dashboard, not a calibrated landslide model.
 
