@@ -23,6 +23,7 @@ enum msg_flags {
 /* Byte 18 of the base report: which extension blocks follow. */
 enum ext_flags {
 	EXT_SC1 = 0x01,        /* 24-byte SC-1 block at offset 19 */
+	EXT_AUTH = 0x02,       /* 16-byte auth trailer at the end (auth.h) */
 };
 
 struct report {
@@ -45,7 +46,8 @@ struct report {
 
 #define PAYLOAD_BASE_LEN 19
 #define PAYLOAD_SC1_LEN  24
-#define PAYLOAD_MAX_LEN  (PAYLOAD_BASE_LEN + PAYLOAD_SC1_LEN)
+#define PAYLOAD_AUTH_LEN 16
+#define PAYLOAD_MAX_LEN  (PAYLOAD_BASE_LEN + PAYLOAD_SC1_LEN + PAYLOAD_AUTH_LEN)
 
 /*
  * Little-endian. 19-byte base report (unchanged from v1, so old gateways still
@@ -54,6 +56,8 @@ struct report {
  *   25 s16 cell 0.01 C    27 s16 soil 0.01 C    29 u8 soil %    30 u8 borer index
  *   31 u16 rain 1 h       33 u16 rain 24 h      35 u16 rain 3 d 37 u16 rain 5 d
  *   39 u16 rain 7 d       41 u16 rain 15 d      (rain in 0.2 mm tips)
+ * When byte 18 has EXT_AUTH, auth_seal() adds a 16-byte trailer last:
+ *   u32 boot epoch, u32 counter, 8-byte HMAC-SHA256 tag over everything before it.
  * Returns the length written, 0 if `cap` is too small.
  */
 size_t payload_pack(const struct report *r, uint8_t *out, size_t cap);

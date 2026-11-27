@@ -35,6 +35,13 @@ struct Report {
 	uint8_t ext;
 	bool has_sc1;
 	Sc1Block sc1;
+	/* Auth trailer (verified on the server, which holds the keys). */
+	bool has_auth;
+	uint32_t auth_epoch, auth_counter;
+	uint8_t auth_tag[8];
+	/* The packet as received, forwarded so the server can check the tag. */
+	const uint8_t *raw;
+	size_t raw_len;
 };
 
 enum : uint8_t {

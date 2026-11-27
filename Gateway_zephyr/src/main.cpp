@@ -214,7 +214,7 @@ static void wifi_service(void)
 static struct mqtt_client client;
 static struct sockaddr_storage broker;
 static uint8_t mqtt_rx_buf[256];
-static uint8_t mqtt_tx_buf[1024];
+static uint8_t mqtt_tx_buf[1536];
 static char client_id[32];
 static struct mqtt_utf8 mqtt_user, mqtt_pass;
 static bool mqtt_connected, mqtt_open;
@@ -353,7 +353,7 @@ static void mqtt_send(const char *topic, const char *payload, size_t len)
 static void handle(const struct rx_packet *p)
 {
 	Report r;
-	static char json[640];
+	static char json[1024];
 
 	rx_count++;
 	if (!decode_report(p->data, p->len, &r)) {

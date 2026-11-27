@@ -3,7 +3,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import * as Ic from "./icons";
 import {
-  API, ago, clamp, getJSON, hhmm, hourLabel, hourOf, nightness, putSettings, sampleAt,
+  AuthError, ago, clamp, getJSON, getSession, getToken, hhmm, hourLabel, hourOf, login, logout, nightness,
+  putSettings, sampleAt, wsURL,
   type EventItem, type NodeSummary, type Report, type Settings,
 } from "./lib";
 
@@ -79,6 +80,7 @@ const ART: Record<string, [string, string, () => React.JSX.Element]> = {
   rain: ["#a8d8ff", "#3c7bc4", Ic.Rain],
   borer: ["#d9c3a0", "#7a5c3c", Ic.Wave],
   tilt: ["#ffd08a", "#c46c3c", Ic.Mountain],
+  security: ["#ffd2c7", "#ff7a5c", Ic.Shield],
 };
 
 function Art({ kind, seed }: { kind: string; seed: number }) {
@@ -112,6 +114,10 @@ export default function Dashboard() {
   const [demo, setDemo] = useState(false);
   const [online, setOnline] = useState<boolean | null>(null);
   const [now, setNow] = useState(() => Date.now() / 1000);
+  const [authState, setAuthState] = useState<"checking" | "login" | "ok">("checking");
+  const [authRequired, setAuthRequired] = useState(false);
+  const [pw, setPw] = useState("");
+  const [pwBad, setPwBad] = useState(false);
 
   const [tab, setTab] = useState(0);
   const [metric, setMetric] = useState<MetricId>("risk");
@@ -162,11 +168,26 @@ export default function Dashboard() {
       setSettings(d.settings);
       setOnline(true);
       return d.nodes;
-    } catch {
+    } catch (e) {
+      if (e instanceof AuthError) { setAuthState("login"); return null; }
       setOnline(false);
       return null;
     }
   }, []);
+
+  /* ------------------------------------------------------------ login */
+  useEffect(() => {
+    getSession()
+      .then((s) => { setAuthRequired(s.auth_required); setAuthState(!s.auth_required || s.ok ? "ok" : "login"); })
+      .catch(() => setAuthState("ok")); // backend down: show the dashboard with its offline banner
+  }, []);
+
+  const submitLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPwBad(false);
+    if (await login(pw)) { setPw(""); setAuthState("ok"); }
+    else setPwBad(true);
+  };
 
   const loadHist = useCallback(async (list: NodeSummary[], day: number) => {
     const out: Record<number, Report[]> = {};
@@ -183,6 +204,7 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
+    if (authState !== "ok") return;
     let alive = true;
     (async () => {
       const list = await loadNodes();
@@ -197,18 +219,26 @@ export default function Dashboard() {
     const t3 = setInterval(() => setNow(Date.now() / 1000), 1000);
     return () => { alive = false; clearInterval(t1); clearInterval(t2); clearInterval(t3); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [authState]);
 
   /* ------------------------------------------------------ live socket */
   useEffect(() => {
+    if (authState !== "ok") return;
     let ws: WebSocket | null = null, ping: ReturnType<typeof setInterval>, retry: ReturnType<typeof setTimeout>;
     let refresh: ReturnType<typeof setTimeout> | null = null;
     const open = () => {
-      ws = new WebSocket(API.replace(/^http/, "ws") + "/ws");
+      ws = new WebSocket(wsURL(getToken()));
       ws.onopen = () => { ping = setInterval(() => ws?.readyState === 1 && ws.send("ping"), 20000); };
       ws.onmessage = (m) => {
         const msg = JSON.parse(m.data);
         if (msg.event === "settings") setSettings(msg.settings);
+        if (msg.event === "security") {
+          const ev = msg.security as { node: number | null; reason: string; detail: string };
+          const label = ({ replay: "Replayed packet blocked", bad_tag: "Forged packet blocked", unsigned: "Unsigned packet blocked" } as Record<string, string>)[ev.reason] ?? "Packet blocked";
+          say(`${label} · ${ev.node === 1 ? "Teak Ridge" : ev.node === 2 ? "Rosewood Bend" : ev.node === 3 ? "Laurel Slope" : `node ${ev.node}`}`, true);
+          loadEvents();
+          return;
+        }
         if (msg.event !== "report") return;
         const r: Report = msg.report;
         setHist((h) => ({ ...h, [r.node]: [...(h[r.node] ?? []), r].slice(-800) }));
@@ -219,12 +249,16 @@ export default function Dashboard() {
           if (!mutedRef.current) say(`Chainsaw confirmed at ${r.node === 1 ? "Teak Ridge" : `node ${r.node}`}`, true);
         }
       };
-      ws.onclose = () => { clearInterval(ping); retry = setTimeout(open, 3000); };
+      ws.onclose = (ev) => {
+        clearInterval(ping);
+        if (ev.code === 4401) setAuthState("login");
+        else retry = setTimeout(open, 3000);
+      };
       ws.onerror = () => ws?.close();
     };
     open();
     return () => { clearTimeout(retry); clearInterval(ping); if (ws) { ws.onclose = null; ws.close(); } };
-  }, [loadNodes, loadEvents, say]);
+  }, [loadNodes, loadEvents, say, authState]);
 
   /* ---------------------------------------------------------- intro */
   useEffect(() => {
@@ -456,11 +490,24 @@ export default function Dashboard() {
         <div className="dim" style={{ opacity: night * 0.62 }} />
       </div>
 
-      <div id="stage">
+      {authState === "login" && (
+        <form className="login glass" onSubmit={submitLogin}>
+          <i className="logo"><Ic.Leaf /></i>
+          <div className="t">SylvaEcho Canopy</div>
+          <div className="s">Sign in to see the forest</div>
+          <input type="password" autoFocus placeholder="Dashboard password" value={pw} aria-label="Dashboard password"
+            onChange={(e) => { setPw(e.target.value); setPwBad(false); }} className={pwBad ? "bad" : ""} />
+          {pwBad && <div className="err">Wrong password</div>}
+          <button type="submit" disabled={!pw}>Sign in</button>
+        </form>
+      )}
+
+      <div id="stage" style={authState === "ok" ? undefined : { visibility: "hidden" }}>
         <div id="ui" ref={uiRef}>
           <div className="brand"><i><Ic.Leaf /></i><div>SylvaEcho<small>Canopy · forest guardian</small></div></div>
           <div className={`mode glass ${online ? "" : "off"}`}>
             <span className="dot" />{online === false ? "Backend offline" : demo ? "Demo data" : "Live gateway"}
+            {authRequired && <button className="signout" onClick={async () => { await logout(); setAuthState("login"); }}>Sign out</button>}
           </div>
 
           <nav className="tabs glass" ref={tabsRef}>
@@ -497,6 +544,7 @@ export default function Dashboard() {
               <div className="curtain go" key={`c${swap}`} />
               <span className="chip tl" style={{ ["--c" as string]: live ? (anyOnline ? "var(--m2)" : "#9aa39a") : "var(--m1)" }}>
                 <span className="dot" />{live ? (anyOnline ? "Live" : "Offline") : `Replay · ${scrubLabel}`}
+                {rep?.verified && <><Ic.Shield />Signed</>}
               </span>
               <span className="tr">RX · {clock}</span>
               <div className="bl">

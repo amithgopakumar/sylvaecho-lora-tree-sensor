@@ -33,7 +33,11 @@ export type Report = {
   ts: number;
   risk: number | null;
   demo?: boolean;
+  verified?: boolean;
+  auth?: { epoch: number; counter: number };
 };
+
+export type SecurityEvent = { ts: number; node: number | null; reason: string; detail: string; demo: boolean };
 
 export type NodeSummary = {
   node: number;
@@ -55,7 +59,7 @@ export type Settings = {
 };
 
 export type EventItem = {
-  kind: "saw" | "tilt" | "borer" | "rain" | "bird" | "buzz";
+  kind: "saw" | "tilt" | "borer" | "rain" | "bird" | "buzz" | "security";
   title: string;
   detail: string;
   node: number;
@@ -64,22 +68,61 @@ export type EventItem = {
   demo: boolean;
 };
 
-export const API = (process.env.NEXT_PUBLIC_API || "http://localhost:8000").replace(/\/$/, "");
+/* NEXT_PUBLIC_API: the backend URL. Set it to "same-origin" when the dashboard and
+ * API sit behind one HTTPS reverse proxy (Dashboard/Caddyfile). */
+const RAW_API = process.env.NEXT_PUBLIC_API ?? "http://localhost:8000";
+export const API = RAW_API === "same-origin" ? "" : RAW_API.replace(/\/$/, "");
+
+export function wsURL(token: string) {
+  const base = API || (typeof window !== "undefined" ? window.location.origin : "");
+  return base.replace(/^http/, "ws") + "/ws" + (token ? `?token=${encodeURIComponent(token)}` : "");
+}
+
+/* Login token (only used when the server sets DASH_PASSWORD). */
+const TOKEN_KEY = "sylvaecho.token";
+export const getToken = () => (typeof window === "undefined" ? "" : localStorage.getItem(TOKEN_KEY) ?? "");
+export const setToken = (t: string) => (t ? localStorage.setItem(TOKEN_KEY, t) : localStorage.removeItem(TOKEN_KEY));
+
+export class AuthError extends Error {}
+
+function headers(json = false): HeadersInit {
+  const h: Record<string, string> = {};
+  if (json) h["content-type"] = "application/json";
+  const t = getToken();
+  if (t) h.Authorization = `Bearer ${t}`;
+  return h;
+}
 
 export async function getJSON<T>(path: string): Promise<T> {
-  const r = await fetch(`${API}${path}`, { cache: "no-store" });
+  const r = await fetch(`${API}${path}`, { cache: "no-store", headers: headers() });
+  if (r.status === 401) throw new AuthError("login required");
   if (!r.ok) throw new Error(`${path}: ${r.status}`);
   return r.json();
 }
 
 export async function putSettings(patch: Partial<Settings>): Promise<Settings> {
-  const r = await fetch(`${API}/api/settings`, {
-    method: "PUT",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify(patch),
-  });
+  const r = await fetch(`${API}/api/settings`, { method: "PUT", headers: headers(true), body: JSON.stringify(patch) });
+  if (r.status === 401) throw new AuthError("login required");
   if (!r.ok) throw new Error(`settings: ${r.status}`);
   return r.json();
+}
+
+export async function getSession(): Promise<{ auth_required: boolean; ok: boolean }> {
+  const r = await fetch(`${API}/api/session`, { cache: "no-store", headers: headers() });
+  if (!r.ok) throw new Error(`session: ${r.status}`);
+  return r.json();
+}
+
+export async function login(password: string): Promise<boolean> {
+  const r = await fetch(`${API}/api/login`, { method: "POST", headers: headers(true), body: JSON.stringify({ password }) });
+  if (!r.ok) return false;
+  setToken((await r.json()).token);
+  return true;
+}
+
+export async function logout() {
+  await fetch(`${API}/api/logout`, { method: "POST", headers: headers() }).catch(() => undefined);
+  setToken("");
 }
 
 export const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));

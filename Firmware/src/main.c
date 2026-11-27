@@ -16,8 +16,10 @@
 #include <zephyr/drivers/lora.h>
 #include <zephyr/drivers/sensor.h>
 #include <zephyr/logging/log.h>
+#include <zephyr/random/random.h>
 
 #include "audio.h"
+#include "auth.h"
 #include "config.h"
 #include "features.h"
 #include "payload.h"
@@ -60,7 +62,7 @@ static int radio_send(const struct report *r, int8_t dbm)
 		.tx = true,
 	};
 	uint8_t buf[PAYLOAD_MAX_LEN];
-	size_t len = payload_pack(r, buf, sizeof(buf));
+	size_t len = auth_seal(buf, payload_pack(r, buf, sizeof(buf)), sizeof(buf));
 	int err = lora_config(lora, &c);
 
 	if (err == 0) {
@@ -302,6 +304,11 @@ int main(void)
 	}
 	audio_init();
 	sc1_init();
+	if (auth_init(CONFIG_SYLVAECHO_AUTH_KEY, sys_rand32_get()) == 0) {
+		LOG_INF("reports are signed (HMAC-SHA256)");
+	} else {
+		LOG_WRN("no auth key in secrets.conf: reports are NOT signed");
+	}
 
 	gpio_pin_configure_dt(&wake, GPIO_INPUT);
 	gpio_init_callback(&wake_cb, on_wake, BIT(wake.pin));

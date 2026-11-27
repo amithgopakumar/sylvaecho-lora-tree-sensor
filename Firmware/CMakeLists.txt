@@ -11,6 +11,11 @@ if(NOT SENSOR MATCHES "^(bme680|bme280)$")
 endif()
 list(APPEND EXTRA_DTC_OVERLAY_FILE ${CMAKE_CURRENT_SOURCE_DIR}/variants/${SENSOR}.overlay)
 
+# Per-node secrets (auth key): copy secrets.conf.example to secrets.conf (git-ignored).
+if(EXISTS ${CMAKE_CURRENT_LIST_DIR}/secrets.conf)
+  list(APPEND EXTRA_CONF_FILE ${CMAKE_CURRENT_LIST_DIR}/secrets.conf)
+endif()
+
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(sylvaecho)
 
@@ -20,4 +25,5 @@ target_sources(app PRIVATE
     src/features.c
     src/payload.c
     src/sc1.c
+    src/auth.c
 )

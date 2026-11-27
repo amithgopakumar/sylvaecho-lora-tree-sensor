@@ -204,7 +204,7 @@ static void handle_packet(void)
 		return;
 	}
 
-	char json[640];
+	char json[1024];
 	size_t n = report_to_json(r, rssi, snr, json, sizeof(json));
 
 	if (n == 0) {
@@ -230,7 +230,7 @@ void setup(void)
 	wifi_begin();
 	if (strlen(MQTT_HOST)) {
 		mqtt.setServer(MQTT_HOST, MQTT_PORT);
-		mqtt.setBufferSize(768);
+		mqtt.setBufferSize(1280);
 	}
 }
 

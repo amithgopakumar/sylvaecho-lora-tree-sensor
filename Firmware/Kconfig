@@ -1,0 +1,14 @@
+menu "SylvaEcho node"
+
+config SYLVAECHO_AUTH_KEY
+	string "Per-node report signing key (64 hex digits)"
+	default ""
+	help
+	  32-byte HMAC-SHA256 key, as 64 hex digits. Put it in secrets.conf,
+	  never in git, and register the same key for this node on the
+	  dashboard server (Dashboard/backend/keys.json). Empty = reports are
+	  sent unsigned.
+
+endmenu
+
+source "Kconfig.zephyr"

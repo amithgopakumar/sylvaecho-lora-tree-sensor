@@ -1,0 +1,30 @@
+# HTTPS for the Canopy dashboard: one address for the web app, the API and the live socket.
+#
+#   Local test:  caddy run --config Dashboard/Caddyfile           -> https://localhost
+#                (Caddy's own local certificate; run `caddy trust` once so the browser accepts it)
+#   On a server: SITE=canopy.example.org caddy run --config Dashboard/Caddyfile
+#                (real certificate from Let's Encrypt: the domain must point here, ports 80 and 443 open)
+#
+# Build the front end with NEXT_PUBLIC_API=same-origin so it calls /api and /ws on this address,
+# and start the backend with DASH_PASSWORD set. The gateway can keep posting to the backend on the
+# local network (http://<pc>:8000/api/ingest with INGEST_TOKEN): every report is signed by the node,
+# so it cannot be altered on the way.
+
+{$SITE:localhost} {
+	encode gzip
+
+	@api path /api/* /ws
+	handle @api {
+		reverse_proxy 127.0.0.1:8000
+	}
+	handle {
+		reverse_proxy 127.0.0.1:3000
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "no-referrer"
+		-Server
+	}
+}

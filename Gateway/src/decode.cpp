@@ -2,6 +2,7 @@
 
 #include <stdarg.h>
 #include <stdio.h>
+#include <string.h>
 
 static uint16_t u16(const uint8_t *p) { return (uint16_t)(p[0] | (p[1] << 8)); }
 static int16_t s16(const uint8_t *p) { return (int16_t)u16(p); }
@@ -9,6 +10,9 @@ static int16_t s16(const uint8_t *p) { return (int16_t)u16(p); }
 static const size_t BASE_LEN = 19;
 static const size_t SC1_LEN = 24;
 static const uint8_t EXT_SC1 = 0x01;
+static const uint8_t EXT_AUTH = 0x02;
+static const size_t AUTH_LEN = 16;
+static uint32_t u32(const uint8_t *p) { return (uint32_t)p[0] | (uint32_t)p[1] << 8 | (uint32_t)p[2] << 16 | (uint32_t)p[3] << 24; }
 
 bool decode_report(const uint8_t *p, size_t len, Report *r)
 {
@@ -28,7 +32,16 @@ bool decode_report(const uint8_t *p, size_t len, Report *r)
 	r->press_hpa_x10 = u16(&p[14]);
 	r->seq = u16(&p[16]);
 	r->ext = p[18];
-	r->has_sc1 = (r->ext & EXT_SC1) && len >= BASE_LEN + SC1_LEN;
+	r->raw = p;
+	r->raw_len = len;
+	r->has_auth = (r->ext & EXT_AUTH) && len >= BASE_LEN + AUTH_LEN;
+	size_t body = r->has_auth ? len - AUTH_LEN : len;
+	if (r->has_auth) {
+		r->auth_epoch = u32(&p[body]);
+		r->auth_counter = u32(&p[body + 4]);
+		memcpy(r->auth_tag, &p[body + 8], 8);
+	}
+	r->has_sc1 = (r->ext & EXT_SC1) && body >= BASE_LEN + SC1_LEN;
 
 	if (r->has_sc1) {
 		const uint8_t *q = &p[BASE_LEN];
@@ -127,6 +140,17 @@ size_t report_to_json(const Report &r, int rssi, float snr, char *out, size_t ca
 		o.add(",\"alerts\":{\"rain\":%s,\"low_batt\":%s,\"borer\":%s}}",
 		      (s.status & 0x02) ? "true" : "false", (s.status & 0x04) ? "true" : "false",
 		      (s.status & 0x08) ? "true" : "false");
+	}
+	if (r.has_auth) {
+		o.add(",\"auth\":{\"epoch\":%lu,\"counter\":%lu}", (unsigned long)r.auth_epoch,
+		      (unsigned long)r.auth_counter);
+	}
+	if (r.raw && r.raw_len) {
+		o.add(",\"raw\":\"");
+		for (size_t i = 0; i < r.raw_len; i++) {
+			o.add("%02x", r.raw[i]);
+		}
+		o.add("\"");
 	}
 	o.add("}");
 	return o.overflow ? 0 : o.len;

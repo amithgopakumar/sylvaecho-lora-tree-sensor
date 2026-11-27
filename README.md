@@ -187,6 +187,28 @@ The front end is a spatial glass window over the forest photo, with mouse parall
 
 Open `http://localhost:3000/?shot` for a flat, still layout for screenshots.
 
+### Security and alerts
+
+- **Signed reports.** Each node signs every packet. It adds a 16-byte trailer: a random boot ID, a counter, and an 8-byte HMAC-SHA256 tag (`Firmware/src/auth.c`). Give each node its own key: put it in `Firmware/secrets.conf` (copy `secrets.conf.example`) and put the same key in `Dashboard/backend/keys.json` (see `keys.example.json`). Both files are git-ignored.
+- **What the server does.** The gateway passes the raw packet through, and the server checks the tag against the raw bytes (`Dashboard/backend/protocol.py`). For any node that has a key, it rejects:
+  - unsigned packets (HTTP 403);
+  - forged or altered packets (403);
+  - replayed packets (409): a counter it has already seen, or a packet from an earlier boot.
+
+  Each rejection is logged at `/api/security`, appears on the dashboard as a warning and in the soundscape, and sends a phone alert.
+- **Test it.** `.venv/bin/python tools/attack_test.py --node 1` replays, forges and strips a real packet and shows the server rejecting each one. The demo trees sign with fixed, public demo keys; never use those on real nodes.
+- **Phone alerts.** Set `NTFY_URL=https://ntfy.sh/<long-random-topic>` (or your own ntfy server, with `NTFY_TOKEN`) and subscribe to the same topic in the ntfy app. You get alerts for:
+  - a confirmed chainsaw (while the guard is armed);
+  - tree tilt;
+  - SC-1 rain, low battery or borer alerts;
+  - slope risk crossing its alert level;
+  - rejected packets.
+
+  Each kind of alert repeats at most every 10 minutes per tree.
+- **Login.** Set `DASH_PASSWORD` to require a password for the dashboard, its API and the live socket. Sign-in tokens last 7 days. `INGEST_TOKEN` separately protects the gateway's `/api/ingest`.
+- **HTTPS.** `Dashboard/Caddyfile` serves the dashboard, API and live socket on one HTTPS address. Build the front end with `NEXT_PUBLIC_API=same-origin`. The Caddyfile has not been tested here.
+- **Not done yet.** The key is still in node flash. Next step: keep it in the ATECC608B on SC-1 and use its HMAC command and monotonic counter.
+
 The slope-risk index (0-100) combines 24 h and 3-day rain, soil moisture and tree tilt. It is a screening heuristic for the dashboard, not a calibrated landslide model.
 
 ## Ordering the board
