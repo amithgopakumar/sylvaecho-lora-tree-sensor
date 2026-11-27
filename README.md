@@ -69,7 +69,7 @@ Rev 0.4 has no battery-voltage line to the MCU, so it cannot report how full the
 - 46 × 21 mm, 2 layers. ICs and connectors on top, 0805 passives on the bottom: everything is hand-solderable.
 - Program the ATtiny over UPDI (J9) with a USB-serial adapter (SerialUPDI).
 - Files: `PCB/Companion_SC1/` (EasyEDA Pro project, fabrication files, KiCad source and the scripts that generate it).
-- v0.2 layout: passives spread with routing channels, every GND pad has its own via to the GND pours, signals routed with EasyEDA's JRouter. Copper DRC is clean; the schematic symbols in the EasyEDA project still need their footprint links (EasyEDA reports a schematic/PCB netlist mismatch until then).
+- v0.2 layout: passives spread with routing channels, every GND pad has its own via to the GND pours, signals routed with EasyEDA's JRouter. Schematic and PCB are linked (all 48 footprints assigned) and EasyEDA's DRC reports no issues.
 
 ## Repository layout
 
@@ -126,7 +126,7 @@ Schedule, detection thresholds and LoRa settings are in `Firmware/src/config.h`.
 | Schematic | Rev 0.3 |
 | PCB layout | Rev 0.4 (BME680) routed and DRC checked; rev 0.3 (BME280) kept |
 | Prototype boards | Rev 0.4 at JLCPCB (5 PCBs, 2 assembled); Spark sponsorship coupon approved |
-| Companion board SC-1 | v0.2: re-placed and fully routed in EasyEDA Pro, copper DRC clean; Gerbers ready for Lion Circuits (hand-soldered) |
+| Companion board SC-1 | v0.2: re-placed and fully routed in EasyEDA Pro, schematic linked, DRC clean; Gerbers ready for Lion Circuits (hand-soldered) |
 | MVP | Being built on development boards with the same sensors |
 | Firmware | First version; detection thresholds are placeholders until the classifier is trained |
 | Field test | Planned |
