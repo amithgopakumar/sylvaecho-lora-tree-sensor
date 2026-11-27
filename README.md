@@ -88,8 +88,10 @@ PCB/
     tools/        Generators and EasyEDA scripts used to build it
   footprints/     Custom KiCad footprints (XIAO SMD, mic, jumper, test point, mounting hole)
   schematic/      Original KiCad schematic (BME280), netlist, BOM and PDF
-Firmware/         Zephyr firmware for the XIAO nRF52840 (both board versions)
+Firmware/         Zephyr firmware for the XIAO nRF52840 node (both board versions)
   variants/       Environment sensor overlay for each board version
+SC1_Firmware/     ATtiny1616 co-processor firmware for the SC-1 add-on (PlatformIO)
+Gateway/          XIAO ESP32S3 + Wio-SX1262 gateway: LoRa to USB serial, MQTT and HTTP (PlatformIO)
 Images/           Renders, block diagram and schematic preview
 ```
 
@@ -112,6 +114,35 @@ Run `west build -p` after switching between the two so the build directory is re
 
 Schedule, detection thresholds and LoRa settings are in `Firmware/src/config.h`. The default LoRa channel is 865.0625 MHz (IN865); change it for EU868 or US915. Logs go out over Segger RTT, because the UART pins are used by the microphone.
 
+The node finds the SC-1 add-on at boot (I2C 0x2A) and works the same without it. With SC-1 fitted, every report carries a 24-byte extension (battery, cell and soil temperature, soil moisture, rain totals, borer index), and an SC-1 pulse on WAKE_N (optional TP1 to TP6 wire) sends a `sc1_alert` report for heavy rain, low battery or borer activity.
+
+### SC-1 co-processor (ATtiny1616)
+
+```
+cd SC1_Firmware
+pio run                                                 # build
+pio run -t upload --upload-port /dev/cu.usbserial-XXXX  # flash over UPDI (J9)
+```
+
+Flash it with SerialUPDI: a 3.3 V USB-serial adapter with a 4.7k resistor from TX to RX, RX to J9 pin 1 (UPDI), plus 3V3 and GND. The register map is in `SC1_Firmware/src/sc1_regs.h` (the node uses an identical copy). Defaults, all changeable over I2C and saved with command 0xA5: 1000 mAh cell, battery sampled every 60 s, soil and NTCs every 30 min, rain alert at 50 tips (10 mm) per hour, low battery at 15 %, borer listen 20 s after each node report.
+
+Battery % is a coulomb count from INA219 samples, reset at full charge and corrected from the resting LiFePO4 voltage near empty and full. The INA219 is powered only while sampling, so short LoRa transmit peaks between samples are missed; treat the % as an estimate until it has been checked against a bench discharge.
+
+### Gateway (XIAO ESP32S3 + Wio-SX1262)
+
+```
+cd Gateway
+cp src/secrets.example.h src/secrets.h   # Wi-Fi, MQTT broker and/or HTTP URL
+pio run -t upload
+pio device monitor                       # one JSON line per packet
+```
+
+It listens on the same channel as the node (865.0625 MHz, SF10, BW 125 kHz, CR 4/5, private sync word) and drops repeated packets by node and sequence number. Each report is printed on USB serial, published to MQTT as `sylvaecho/<node>/<type>`, and/or POSTed as JSON to `HTTP_URL`. Leave the MQTT host and HTTP URL empty for serial output only.
+
+### Report format
+
+19-byte base report (unchanged), with byte 18 = extension flags. When bit 0 is set, the 24-byte SC-1 block follows (43 bytes in total). The full layout is in `Firmware/src/payload.h`; the gateway decoder is `Gateway/src/decode.cpp`.
+
 ## Ordering the board
 
 1. Open `PCB/BME680_rev0.4/easyeda/SylvaEcho_rev0.4_BME680.epro` in EasyEDA Pro (File > Import), or use the files in `PCB/BME680_rev0.4/fabrication/` directly. For the BME280 version use `PCB/BME280_rev0.3/`.
@@ -126,9 +157,11 @@ Schedule, detection thresholds and LoRa settings are in `Firmware/src/config.h`.
 | Schematic | Rev 0.3 |
 | PCB layout | Rev 0.4 (BME680) routed and DRC checked; rev 0.3 (BME280) kept |
 | Prototype boards | Rev 0.4 at JLCPCB (5 PCBs, 2 assembled); Spark sponsorship coupon approved |
-| Companion board SC-1 | v0.2: re-placed and fully routed in EasyEDA Pro, schematic linked, DRC clean; Gerbers ready for Lion Circuits (hand-soldered) |
+| Companion board SC-1 | v0.2: routed, DRC clean; 5 PCBs and parts ordered (Lion Circuits, Robu, Evelta), boards due early December 2026 |
 | MVP | Being built on development boards with the same sensors |
-| Firmware | First version; detection thresholds are placeholders until the classifier is trained |
+| Firmware | Node: first version plus SC-1 support; detection thresholds are placeholders until the classifier is trained |
+| SC-1 firmware | Builds (8.2 KB of 16 KB flash); waiting for boards to test on hardware |
+| Gateway firmware | Builds for the XIAO ESP32S3; decoder checked against the node's packer on a PC |
 | Field test | Planned |
 
 ## License

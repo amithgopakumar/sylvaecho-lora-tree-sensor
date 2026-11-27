@@ -21,6 +21,8 @@
 #include "config.h"
 #include "features.h"
 #include "payload.h"
+#include "sc1.h"
+#include "sc1_regs.h"
 
 LOG_MODULE_REGISTER(sylvaecho, LOG_LEVEL_INF);
 
@@ -57,7 +59,7 @@ static int radio_send(const struct report *r, int8_t dbm)
 		.tx_power = dbm,
 		.tx = true,
 	};
-	uint8_t buf[32];
+	uint8_t buf[PAYLOAD_MAX_LEN];
 	size_t len = payload_pack(r, buf, sizeof(buf));
 	int err = lora_config(lora, &c);
 
@@ -158,6 +160,24 @@ static void new_report(struct report *r, uint8_t type)
 	*r = (struct report){ .type = type, .node_id = NODE_ID, .seq = seq++ };
 }
 
+/* Attach the SC-1 block. Call after read_climate(): the cell NTC, when fitted,
+ * replaces the enclosure temperature for the LiFePO4 charge-window flag. */
+static void attach_sc1(struct report *r)
+{
+	if (!sc1_present() || sc1_read(&r->sc1) != 0) {
+		return;
+	}
+	r->has_sc1 = true;
+	if (r->sc1.temp_cell_cx100 != SC1_TEMP_INVALID) {
+		int16_t t = r->sc1.temp_cell_cx100;
+
+		r->flags &= ~FLAG_TEMP_OUT_OF_CHARGE_RANGE;
+		if (t < CHARGE_MIN_C_X100 || t > CHARGE_MAX_C_X100) {
+			r->flags |= FLAG_TEMP_OUT_OF_CHARGE_RANGE;
+		}
+	}
+}
+
 /* ---------------------------------------------------------- Handlers */
 
 static void biodiversity_window(void)
@@ -173,6 +193,7 @@ static void biodiversity_window(void)
 	r.bird_score = features_bird_score(&f);
 	fill_tilt(&r);
 	read_climate(&r);
+	attach_sc1(&r);
 
 	bool tilted = abs(r.tilt_x_dx10) > TILT_ALERT_DEG_X10 ||
 		      abs(r.tilt_y_dx10) > TILT_ALERT_DEG_X10;
@@ -180,9 +201,46 @@ static void biodiversity_window(void)
 		r.type = MSG_TILT;
 	}
 	radio_send(&r, tilted ? LORA_TX_DBM_ALERT : LORA_TX_DBM_REPORT);
+
+	/* Borer listen runs on the SC-1 while the node sleeps; the result goes in the next report. */
+	if (sc1_present()) {
+		sc1_command(SC1_CMD_CLEAR);
+		sc1_command(SC1_CMD_LISTEN);
+	}
 }
 
-static void logging_check(void)
+/* WAKE_N is shared: the SC-1 pulses it for rain, low-battery and borer alerts.
+ * Report alerts that are new since the last look, then fall through to the
+ * chainsaw check (it exits quickly when the trunk is still). */
+static void sc1_check_events(void)
+{
+	static uint8_t seen;
+	const uint8_t alerts = SC1_ST_RAIN_ALERT | SC1_ST_LOW_BATT | SC1_ST_BORER_ALERT;
+	uint8_t st;
+
+	if (!sc1_present() || sc1_status(&st) != 0) {
+		return;
+	}
+	uint8_t fresh = st & alerts & ~seen;
+
+	seen = st & alerts;
+	if (!fresh) {
+		return;
+	}
+	LOG_INF("SC-1 alert 0x%02x", fresh);
+
+	struct report r;
+
+	new_report(&r, MSG_SC1_EVENT);
+	fill_tilt(&r);
+	read_climate(&r);
+	attach_sc1(&r);
+	radio_send(&r, LORA_TX_DBM_ALERT);
+	sc1_command(SC1_CMD_CLEAR);
+}
+
+/* Returns true when the trunk was actually vibrating (a real check ran). */
+static bool logging_check(void)
 {
 	int vib = vibration_rms_mg();
 	int hits = 0;
@@ -190,7 +248,7 @@ static void logging_check(void)
 
 	LOG_INF("wake: vibration %d mg", vib);
 	if (vib < VIB_RMS_MIN_MG) {
-		return;
+		return false;
 	}
 	for (int i = 0; i < LOGGING_CHECK_CLIPS; i++) {
 		struct audio_features f;
@@ -206,7 +264,7 @@ static void logging_check(void)
 	}
 	LOG_INF("chainsaw clips %d/%d, best %u", hits, LOGGING_CHECK_CLIPS, best);
 	if (hits < LOGGING_CLIPS_NEEDED) {
-		return;
+		return true;
 	}
 
 	struct report r;
@@ -215,9 +273,11 @@ static void logging_check(void)
 	r.saw_score = best;
 	fill_tilt(&r);
 	read_climate(&r);
+	attach_sc1(&r);
 	gpio_pin_set_dt(&led, 1);
 	radio_send(&r, LORA_TX_DBM_ALERT);
 	gpio_pin_set_dt(&led, 0);
+	return true;
 }
 
 /* -------------------------------------------------------------- Main */
@@ -241,6 +301,7 @@ int main(void)
 		}
 	}
 	audio_init();
+	sc1_init();
 
 	gpio_pin_configure_dt(&wake, GPIO_INPUT);
 	gpio_init_callback(&wake_cb, on_wake, BIT(wake.pin));
@@ -254,6 +315,7 @@ int main(void)
 
 	new_report(&boot, MSG_BOOT);
 	read_climate(&boot);
+	attach_sc1(&boot);
 	radio_send(&boot, LORA_TX_DBM_REPORT);
 
 	int64_t next_bio = k_uptime_get() + (int64_t)BIO_INTERVAL_S * 1000;
@@ -262,8 +324,12 @@ int main(void)
 		int64_t wait = next_bio - k_uptime_get();
 
 		if (wait > 0 && k_sem_take(&wake_sem, K_MSEC(wait)) == 0) {
-			logging_check();
-			k_sleep(K_SECONDS(WAKE_HOLDOFF_S));
+			sc1_check_events();
+			/* Hold off only after a real vibration check, so an SC-1 pulse
+			 * never blinds the chainsaw detector for a minute. */
+			if (logging_check()) {
+				k_sleep(K_SECONDS(WAKE_HOLDOFF_S));
+			}
 			k_sem_reset(&wake_sem);
 			continue;
 		}

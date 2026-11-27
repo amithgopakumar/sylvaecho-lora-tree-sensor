@@ -1,0 +1,3 @@
+# Gateway Wi-Fi / MQTT credentials
+src/secrets.h
+.pio/

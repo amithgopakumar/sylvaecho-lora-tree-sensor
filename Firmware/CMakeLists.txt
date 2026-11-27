@@ -19,4 +19,5 @@ target_sources(app PRIVATE
     src/audio.c
     src/features.c
     src/payload.c
+    src/sc1.c
 )
