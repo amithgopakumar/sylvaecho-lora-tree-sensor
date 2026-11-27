@@ -1,0 +1,514 @@
+[
+ {
+  "ref": "J1",
+  "lib": "Connector_Generic:Conn_01x02",
+  "value": "BAT_IN (cell)",
+  "fp": "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical",
+  "nets": {
+   "1": "CELL_P",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "J2",
+  "lib": "Connector_Generic:Conn_01x02",
+  "value": "BAT_OUT (to main J2)",
+  "fp": "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical",
+  "nets": {
+   "1": "VBAT",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "R1",
+  "lib": "Device:R",
+  "value": "0.22R 1% shunt",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "CELL_P",
+   "2": "VBAT"
+  }
+ },
+ {
+  "ref": "U2",
+  "lib": "Sensor_Energy:INA219AxDCN",
+  "value": "INA219AIDCNR (0x40)",
+  "fp": "Package_TO_SOT_SMD:SOT-23-8_Handsoldering",
+  "nets": {
+   "1": "CELL_P",
+   "2": "VBAT",
+   "3": "GND",
+   "4": "SNS_PWR",
+   "5": "ISCL",
+   "6": "ISDA",
+   "7": "GND",
+   "8": "GND"
+  }
+ },
+ {
+  "ref": "R2",
+  "lib": "Device:R",
+  "value": "4.7k",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "SNS_PWR",
+   "2": "ISDA"
+  }
+ },
+ {
+  "ref": "R3",
+  "lib": "Device:R",
+  "value": "4.7k",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "SNS_PWR",
+   "2": "ISCL"
+  }
+ },
+ {
+  "ref": "C3",
+  "lib": "Device:C",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+  "nets": {
+   "1": "SNS_PWR",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "U1",
+  "lib": "MCU_Microchip_ATtiny:ATtiny1616-S",
+  "value": "ATtiny1616-SN (I2C 0x2A)",
+  "fp": "Package_SO:SOIC-20W_7.5x12.8mm_P1.27mm",
+  "nets": {
+   "1": "3V3",
+   "20": "GND",
+   "16": "UPDI",
+   "18": "RAIN",
+   "19": "NTC_CELL",
+   "2": "NTC_SOIL",
+   "3": "SOIL_ADC",
+   "4": "PZ_ADC",
+   "5": "WAKE_OUT",
+   "6": "SNS_PWR",
+   "7": "SOIL_PWR",
+   "8": "NTC_PWR",
+   "9": "AMP_PWR",
+   "10": "SDA",
+   "11": "SCL",
+   "12": "ISDA",
+   "13": "ISCL",
+   "14": "LED"
+  }
+ },
+ {
+  "ref": "C1",
+  "lib": "Device:C",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+  "nets": {
+   "1": "3V3",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "C2",
+  "lib": "Device:C",
+  "value": "10uF",
+  "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+  "nets": {
+   "1": "3V3",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "J9",
+  "lib": "Connector_Generic:Conn_01x03",
+  "value": "UPDI (prog)",
+  "fp": "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical",
+  "nets": {
+   "1": "UPDI",
+   "2": "3V3",
+   "3": "GND"
+  }
+ },
+ {
+  "ref": "R16",
+  "lib": "Device:R",
+  "value": "1k",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "LED",
+   "2": "LED_A"
+  }
+ },
+ {
+  "ref": "D2",
+  "lib": "Device:LED",
+  "value": "GREEN",
+  "fp": "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder",
+  "nets": {
+   "1": "GND",
+   "2": "LED_A"
+  }
+ },
+ {
+  "ref": "R17",
+  "lib": "Device:R",
+  "value": "1k",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "WAKE_OUT",
+   "2": "WAKE"
+  }
+ },
+ {
+  "ref": "TP1",
+  "lib": "Connector:TestPoint",
+  "value": "WAKE (to main TP6)",
+  "fp": "TestPoint:TestPoint_THTPad_1.5x1.5mm_Drill0.7mm",
+  "nets": {
+   "1": "WAKE"
+  }
+ },
+ {
+  "ref": "TP2",
+  "lib": "Connector:TestPoint",
+  "value": "GND",
+  "fp": "TestPoint:TestPoint_THTPad_1.5x1.5mm_Drill0.7mm",
+  "nets": {
+   "1": "GND"
+  }
+ },
+ {
+  "ref": "J5",
+  "lib": "Connector_Generic:Conn_01x04",
+  "value": "QWIIC_IN (main J7)",
+  "fp": "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal",
+  "nets": {
+   "1": "GND",
+   "2": "3V3",
+   "3": "SDA",
+   "4": "SCL"
+  }
+ },
+ {
+  "ref": "U3",
+  "lib": "Security:ATECC608B-SSHDA",
+  "value": "ATECC608B-SSHDA (0x60)",
+  "fp": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+  "nets": {
+   "4": "GND",
+   "5": "SDA",
+   "6": "SCL",
+   "8": "3V3"
+  }
+ },
+ {
+  "ref": "C4",
+  "lib": "Device:C",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+  "nets": {
+   "1": "3V3",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "J7",
+  "lib": "Connector_Generic:Conn_01x05",
+  "value": "FIELD: soil + rain",
+  "fp": "Connector_JST:JST_PH_B5B-PH-K_1x05_P2.00mm_Vertical",
+  "nets": {
+   "1": "SOIL_PWR",
+   "2": "SOIL_AOUT",
+   "3": "NTC_SOIL",
+   "4": "RAIN_EXT",
+   "5": "GND"
+  }
+ },
+ {
+  "ref": "J8",
+  "lib": "Connector_Generic:Conn_01x02",
+  "value": "CELL_NTC 10k",
+  "fp": "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical",
+  "nets": {
+   "1": "NTC_CELL",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "R4",
+  "lib": "Device:R",
+  "value": "10k 1%",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "NTC_PWR",
+   "2": "NTC_CELL"
+  }
+ },
+ {
+  "ref": "R5",
+  "lib": "Device:R",
+  "value": "10k 1%",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "NTC_PWR",
+   "2": "NTC_SOIL"
+  }
+ },
+ {
+  "ref": "C5",
+  "lib": "Device:C",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+  "nets": {
+   "1": "NTC_CELL",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "C6",
+  "lib": "Device:C",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+  "nets": {
+   "1": "NTC_SOIL",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "R6",
+  "lib": "Device:R",
+  "value": "1k",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "SOIL_AOUT",
+   "2": "SOIL_ADC"
+  }
+ },
+ {
+  "ref": "C8",
+  "lib": "Device:C",
+  "value": "10nF",
+  "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+  "nets": {
+   "1": "SOIL_ADC",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "C7",
+  "lib": "Device:C",
+  "value": "1uF",
+  "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+  "nets": {
+   "1": "SOIL_PWR",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "R7",
+  "lib": "Device:R",
+  "value": "1M",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "3V3",
+   "2": "RAIN"
+  }
+ },
+ {
+  "ref": "R8",
+  "lib": "Device:R",
+  "value": "1k",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "RAIN_EXT",
+   "2": "RAIN"
+  }
+ },
+ {
+  "ref": "C9",
+  "lib": "Device:C",
+  "value": "10nF",
+  "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+  "nets": {
+   "1": "RAIN",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "J3",
+  "lib": "Connector_Generic:Conn_01x02",
+  "value": "PIEZO_IN (disc)",
+  "fp": "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical",
+  "nets": {
+   "1": "PIEZO",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "J4",
+  "lib": "Connector_Generic:Conn_01x02",
+  "value": "PIEZO_OUT (to main J5)",
+  "fp": "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical",
+  "nets": {
+   "1": "PIEZO",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "R11",
+  "lib": "Device:R",
+  "value": "1M",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "PIEZO",
+   "2": "PZ_A"
+  }
+ },
+ {
+  "ref": "D1",
+  "lib": "Diode:BAT54S",
+  "value": "BAT54S",
+  "fp": "Package_TO_SOT_SMD:SOT-23_Handsoldering",
+  "nets": {
+   "1": "GND",
+   "2": "AMP_PWR",
+   "3": "PZ_A"
+  }
+ },
+ {
+  "ref": "C12",
+  "lib": "Device:C",
+  "value": "330pF C0G",
+  "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+  "nets": {
+   "1": "PZ_A",
+   "2": "PZ_P"
+  }
+ },
+ {
+  "ref": "R12",
+  "lib": "Device:R",
+  "value": "1M",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "PZ_P",
+   "2": "VMID"
+  }
+ },
+ {
+  "ref": "R9",
+  "lib": "Device:R",
+  "value": "1M",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "AMP_PWR",
+   "2": "VMID"
+  }
+ },
+ {
+  "ref": "R10",
+  "lib": "Device:R",
+  "value": "1M",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "VMID",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "C11",
+  "lib": "Device:C",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+  "nets": {
+   "1": "VMID",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "U4",
+  "lib": "Amplifier_Operational:MCP6001-OT",
+  "value": "MCP6001T-I/OT",
+  "fp": "Package_TO_SOT_SMD:SOT-23-5_HandSoldering",
+  "nets": {
+   "1": "AMP_OUT",
+   "2": "GND",
+   "3": "PZ_P",
+   "4": "PZ_N",
+   "5": "AMP_PWR"
+  }
+ },
+ {
+  "ref": "C10",
+  "lib": "Device:C",
+  "value": "100nF",
+  "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+  "nets": {
+   "1": "AMP_PWR",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "R13",
+  "lib": "Device:R",
+  "value": "100k",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "AMP_OUT",
+   "2": "PZ_N"
+  }
+ },
+ {
+  "ref": "C13",
+  "lib": "Device:C",
+  "value": "470pF C0G",
+  "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+  "nets": {
+   "1": "AMP_OUT",
+   "2": "PZ_N"
+  }
+ },
+ {
+  "ref": "R14",
+  "lib": "Device:R",
+  "value": "1k",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "PZ_N",
+   "2": "PZ_G"
+  }
+ },
+ {
+  "ref": "C14",
+  "lib": "Device:C",
+  "value": "1uF",
+  "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+  "nets": {
+   "1": "PZ_G",
+   "2": "GND"
+  }
+ },
+ {
+  "ref": "R15",
+  "lib": "Device:R",
+  "value": "1k",
+  "fp": "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder",
+  "nets": {
+   "1": "AMP_OUT",
+   "2": "PZ_ADC"
+  }
+ },
+ {
+  "ref": "C15",
+  "lib": "Device:C",
+  "value": "10nF",
+  "fp": "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder",
+  "nets": {
+   "1": "PZ_ADC",
+   "2": "GND"
+  }
+ }
+]

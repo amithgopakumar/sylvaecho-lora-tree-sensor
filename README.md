@@ -52,6 +52,25 @@ Rev 0.4 was made because the BME280 went out of stock at JLCPCB. The BME680 also
 - **Battery:** one LiFePO4 cell, for example an IFR18500 (the enclosure size) or an IFR18650. The charger stops at 3.51 V and the system cuts off at about 2.8 V.
 - **Solar panel:** 0.3–0.5 W with an open-circuit voltage (Voc) **below 3.1 V**. A 4-cell panel sold as "2 V" (Voc around 2.4–2.6 V) fits. Panels sold as "3 V" usually have a Voc of 3.5–3.6 V, which is too high for this charger setting.
 
+## Companion board SC-1 (battery gauge, security, field sensors)
+
+Rev 0.4 has no battery-voltage line to the MCU, so it cannot report how full the cell is. SC-1 fixes that without changing the main board: it plugs into the Qwiic port, and the battery and piezo cables pass through it.
+
+![SC-1 top](PCB/Companion_SC1/images/render_top.png)
+
+| Block | Parts | What it does |
+|---|---|---|
+| Battery gauge | INA219 + 0.22 Ω shunt, ATtiny1616 | Battery voltage and current both ways; charge counting gives the battery % (corrected from the resting voltage at night) |
+| Security | ATECC608B | Per-node key that cannot be read out; monotonic counter against replayed packets |
+| Field sensors | 5-pin JST-PH: soil-moisture probe, soil NTC, rain gauge; 2-pin cell NTC | Landslide (slope-risk) index together with the main board tilt |
+| Trunk sound | MCP6001, 0.5–3.4 kHz, gain 101 | Night listening for wood-boring larvae (red palm weevil) |
+
+- I2C addresses on the main bus: ATtiny1616 0x2A, ATECC608B 0x60. The INA219 sits on the ATtiny's private bus and is powered only while sampling.
+- 46 × 21 mm, 2 layers. ICs and connectors on top, 0805 passives on the bottom: everything is hand-solderable.
+- Program the ATtiny over UPDI (J9) with a USB-serial adapter (SerialUPDI).
+- Files: `PCB/Companion_SC1/` (EasyEDA Pro project, fabrication files, KiCad source and the scripts that generate it).
+- v0.2 layout: passives spread with routing channels, every GND pad has its own via to the GND pours, signals routed with EasyEDA's JRouter. Copper DRC is clean; the schematic symbols in the EasyEDA project still need their footprint links (EasyEDA reports a schematic/PCB netlist mismatch until then).
+
 ## Repository layout
 
 ```
@@ -62,6 +81,11 @@ PCB/
   BME280_rev0.3/
     easyeda/      EasyEDA Pro project, rev 0.3
     fabrication/  Gerber files, JLCPCB BOM and pick-and-place files
+  Companion_SC1/
+    easyeda/      EasyEDA Pro project (.epro2) for the SC-1 add-on board
+    fabrication/  Gerber files and the hand-solder BOM
+    kicad_source/ Generated KiCad schematic/PCB and schematic PDF
+    tools/        Generators and EasyEDA scripts used to build it
   footprints/     Custom KiCad footprints (XIAO SMD, mic, jumper, test point, mounting hole)
   schematic/      Original KiCad schematic (BME280), netlist, BOM and PDF
 Firmware/         Zephyr firmware for the XIAO nRF52840 (both board versions)
@@ -101,7 +125,8 @@ Schedule, detection thresholds and LoRa settings are in `Firmware/src/config.h`.
 |---|---|
 | Schematic | Rev 0.3 |
 | PCB layout | Rev 0.4 (BME680) routed and DRC checked; rev 0.3 (BME280) kept |
-| Prototype boards | Rev 0.4 quoted at JLCPCB (5 PCBs, 2 assembled), waiting for sponsorship approval |
+| Prototype boards | Rev 0.4 at JLCPCB (5 PCBs, 2 assembled); Spark sponsorship coupon approved |
+| Companion board SC-1 | v0.2: re-placed and fully routed in EasyEDA Pro, copper DRC clean; Gerbers ready for Lion Circuits (hand-soldered) |
 | MVP | Being built on development boards with the same sensors |
 | Firmware | First version; detection thresholds are placeholders until the classifier is trained |
 | Field test | Planned |

@@ -1,0 +1,29 @@
+Designators,Qty,Value,Footprint,Manufacturer,Part number / description,Side
+C12,1,330pF C0G,C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,Any,0805 330pF 50V C0G,Bottom: C12
+C13,1,470pF C0G,C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,Any,0805 470pF 50V C0G,Bottom: C13
+C2,1,10uF,C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,Any,0805 10uF 16V X5R,Bottom: C2
+"C3, C1, C4, C5, C6, C11, C10",7,100nF,C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,Any,0805 100nF 50V X7R,Top: C6; Bottom: C3 C1 C4 C5 C11 C10
+"C7, C14",2,1uF,C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,Any,0805 1uF 25V X7R,Bottom: C7 C14
+"C8, C9, C15",3,10nF,C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,Any,0805 10nF 50V X7R,Top: C15; Bottom: C8 C9
+D1,1,BAT54S,SOT-23_Handsoldering,Nexperia,"BAT54S,215",Top: D1
+D2,1,GREEN,LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder,Lite-On,LTST-C170KGKT (green 0805),Top: D2
+J1,1,BAT_IN (cell),JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical,JST,B2B-PH-K-S(LF)(SN),Top: J1
+J2,1,BAT_OUT (to main J2),JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical,JST,B2B-PH-K-S(LF)(SN),Top: J2
+J3,1,PIEZO_IN (disc),JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical,JST,B2B-PH-K-S(LF)(SN),Top: J3
+J4,1,PIEZO_OUT (to main J5),JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical,JST,B2B-PH-K-S(LF)(SN),Top: J4
+J5,1,QWIIC_IN (main J7),JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal,JST,SM04B-SRSS-TB(LF)(SN),Top: J5
+J7,1,FIELD: soil + rain,JST_PH_B5B-PH-K_1x05_P2.00mm_Vertical,JST,B5B-PH-K-S(LF)(SN),Top: J7
+J8,1,CELL_NTC 10k,JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical,JST,B2B-PH-K-S(LF)(SN),Top: J8
+J9,1,UPDI (prog),PinHeader_1x03_P2.54mm_Vertical,Generic,1x3 pin header 2.54 mm,Top: J9
+R1,1,0.22R 1% shunt,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,Yageo,RL0805FR-070R22L (0.22R 1% 1/8W),Top: R1
+R13,1,100k,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,Yageo,RC0805FR-07100KL (1%),Bottom: R13
+"R16, R17, R6, R8, R14, R15",6,1k,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,Yageo,RC0805FR-071KL (1%),Top: R17; Bottom: R16 R6 R8 R14 R15
+"R2, R3",2,4.7k,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,Yageo,RC0805FR-074.7KL (1%),Bottom: R2 R3
+"R4, R5",2,10k 1%,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,Yageo,RC0805FR-0710KL (1%),Bottom: R4 R5
+"R7, R11, R12, R9, R10",5,1M,R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,Yageo,RC0805FR-071ML (1%),Top: R10; Bottom: R7 R11 R12 R9
+TP1,1,WAKE (to main TP6),TestPoint_THTPad_1.5x1.5mm_Drill0.7mm,-,THT pad (wire to main TP6),Top: TP1
+TP2,1,GND,TestPoint_THTPad_1.5x1.5mm_Drill0.7mm,-,THT pad,Top: TP2
+U1,1,ATtiny1616-SN (I2C 0x2A),SOIC-20W_7.5x12.8mm_P1.27mm,Microchip,ATTINY1616-SN,Top: U1
+U2,1,INA219AIDCNR (0x40),SOT-23-8_Handsoldering,Texas Instruments,INA219AIDCNR,Top: U2
+U3,1,ATECC608B-SSHDA (0x60),SOIC-8_3.9x4.9mm_P1.27mm,Microchip,ATECC608B-SSHDA-T,Top: U3
+U4,1,MCP6001T-I/OT,SOT-23-5_HandSoldering,Microchip,MCP6001T-I/OT,Top: U4
