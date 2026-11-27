@@ -1,0 +1,58 @@
+/*
+ * SylvaEcho gateway: Seeed XIAO ESP32S3 + Wio-SX1262 (kit 102010611)
+ *
+ * The Wio-SX1262 sits on the XIAO B2B connector (Meshtastic seeed_xiao_s3 pin map):
+ *   SCK GPIO7   MISO GPIO8   MOSI GPIO9   NSS GPIO41
+ *   RESET GPIO42   DIO1 GPIO39   BUSY GPIO40   RXEN GPIO38
+ *   DIO2 drives the TX side of the RF switch; TCXO on DIO3 at 1.8 V.
+ *
+ * GPIO32-48 live on &gpio1 (pin = GPIO - 32).
+ */
+
+#include <zephyr/dt-bindings/pinctrl/esp32s3-pinctrl.h>
+#include <zephyr/dt-bindings/lora/sx126x.h>
+
+/ {
+	aliases {
+		lora0 = &lora0;
+	};
+};
+
+&pinctrl {
+	spim2_wio: spim2_wio {
+		group1 {
+			pinmux = <SPIM2_MISO_GPIO8>,
+				 <SPIM2_SCLK_GPIO7>;
+		};
+		group2 {
+			pinmux = <SPIM2_MOSI_GPIO9>;
+			output-low;
+		};
+	};
+};
+
+&spi2 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+	pinctrl-0 = <&spim2_wio>;
+	pinctrl-names = "default";
+	cs-gpios = <&gpio1 9 GPIO_ACTIVE_LOW>;          /* GPIO41 */
+
+	lora0: lora@0 {
+		compatible = "semtech,sx1262";
+		reg = <0>;
+		spi-max-frequency = <8000000>;
+		reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;    /* GPIO42 */
+		busy-gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;     /* GPIO40 */
+		dio1-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;     /* GPIO39 */
+		rx-enable-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>; /* GPIO38 */
+		dio2-tx-enable;
+		dio3-tcxo-voltage = <SX126X_DIO3_TCXO_1V8>;
+		tcxo-power-startup-delay-ms = <5>;
+	};
+};
+
+&wifi {
+	status = "okay";
+};

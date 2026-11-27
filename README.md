@@ -91,7 +91,11 @@ PCB/
 Firmware/         Zephyr firmware for the XIAO nRF52840 node (both board versions)
   variants/       Environment sensor overlay for each board version
 SC1_Firmware/     ATtiny1616 co-processor firmware for the SC-1 add-on (PlatformIO)
-Gateway/          XIAO ESP32S3 + Wio-SX1262 gateway: LoRa to USB serial, MQTT and HTTP (PlatformIO)
+Gateway/          XIAO ESP32S3 + Wio-SX1262 gateway: LoRa to USB serial, MQTT and HTTP (PlatformIO, Arduino)
+Gateway_zephyr/   Same gateway on Zephyr RTOS: LoRa to USB serial and MQTT (shares Gateway/src/decode.cpp)
+Dashboard/
+  backend/        Python FastAPI + SQLite: ingest (HTTP/MQTT), history, alerts, settings, live WebSocket
+  frontend/       Next.js "Canopy" dashboard: spatial glass UI over the forest
 Images/           Renders, block diagram and schematic preview
 ```
 
@@ -139,9 +143,47 @@ pio device monitor                       # one JSON line per packet
 
 It listens on the same channel as the node (865.0625 MHz, SF10, BW 125 kHz, CR 4/5, private sync word) and drops repeated packets by node and sequence number. Each report is printed on USB serial, published to MQTT as `sylvaecho/<node>/<type>`, and/or POSTed as JSON to `HTTP_URL`. Leave the MQTT host and HTTP URL empty for serial output only.
 
+### Gateway on Zephyr (alternative)
+
+```
+cp Gateway_zephyr/secrets.conf.example Gateway_zephyr/secrets.conf   # Wi-Fi and MQTT
+west build -b xiao_esp32s3/esp32s3/procpu Gateway_zephyr
+west blobs fetch hal_espressif      # once, for the ESP32 Wi-Fi driver
+west flash
+```
+
+Same radio settings, JSON output and MQTT topics as the Arduino gateway, using Zephyr's own SX1262 driver (`lora_recv_async`), Wi-Fi management, DHCP and MQTT client. It has no HTTP POST yet. Pins are in `Gateway_zephyr/boards/xiao_esp32s3_esp32s3_procpu.overlay`.
+
 ### Report format
 
 19-byte base report (unchanged), with byte 18 = extension flags. When bit 0 is set, the 24-byte SC-1 block follows (43 bytes in total). The full layout is in `Firmware/src/payload.h`; the gateway decoder is `Gateway/src/decode.cpp`.
+
+## Dashboard
+
+```
+cd Dashboard/backend
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+DEMO=1 .venv/bin/uvicorn app:app --port 8000     # DEMO=1 simulates three trees
+
+cd Dashboard/frontend
+npm install && npm run dev                      # http://localhost:3000
+```
+
+The backend stores every report in SQLite and pushes it to the browser over a WebSocket. Reports arrive from the Arduino gateway's HTTP POST (`HTTP_URL = "http://<pc>:8000/api/ingest"`, optional `INGEST_TOKEN`) or from MQTT (`MQTT_HOST=<broker>` subscribes to `sylvaecho/+/+`, which works with both gateways). Demo data is labelled "Demo data" in the corner and `"demo": true` in the API; leave `DEMO` unset for real nodes.
+
+The front end is a spatial glass window over the forest photo, with mouse parallax and a fluid 1440 x 810 layout (a stacked layout on phones):
+
+- **Tabs:** all trees, or one tree each. Switching wipes the node view and rolls the card titles.
+- **Rail:** what the dial shows: slope risk, rain, battery, bird activity, temperature.
+- **Dial:** the live value as a mint arc. Drag the white knob to set that metric's alert level (saved on the server). The centre button mutes alerts on this screen.
+- **Node view:** the device photo with a live spectrogram drawn from the pollinator, bird and chainsaw scores. Click it to fill the window.
+- **Storm watch:** tightens the rain and risk alerts and switches to the rain view.
+- **Chainsaw guard:** arm or disarm alerts. A confirmed logging alert turns the card red.
+- **Battery:** the SC-1 state of charge, current and cell temperature.
+- **Timeline:** drag back through the last day. The forest behind the glass darkens for night hours.
+- **Soundscape:** steps through recent highlights: dawn chorus, pollinators, rain, borer clicks and alerts.
+
+The slope-risk index (0-100) combines 24 h and 3-day rain, soil moisture and tree tilt. It is a screening heuristic for the dashboard, not a calibrated landslide model.
 
 ## Ordering the board
 
@@ -161,7 +203,8 @@ It listens on the same channel as the node (865.0625 MHz, SF10, BW 125 kHz, CR 4
 | MVP | Being built on development boards with the same sensors |
 | Firmware | Node: first version plus SC-1 support; detection thresholds are placeholders until the classifier is trained |
 | SC-1 firmware | Builds (8.2 KB of 16 KB flash); waiting for boards to test on hardware |
-| Gateway firmware | Builds for the XIAO ESP32S3; decoder checked against the node's packer on a PC |
+| Gateway firmware | Arduino version builds for the XIAO ESP32S3; decoder checked against the node's packer on a PC. Zephyr version written, not yet built |
+| Dashboard | Python backend and Next.js front end run with demo data; waiting for the gateway to feed real reports |
 | Field test | Planned |
 
 ## License

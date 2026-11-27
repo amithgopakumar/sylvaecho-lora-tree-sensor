@@ -1,0 +1,38 @@
+menu "SylvaEcho gateway"
+
+config GW_WIFI_SSID
+	string "Wi-Fi network name"
+	default ""
+	help
+	  Leave empty to run without Wi-Fi (USB serial output only).
+
+config GW_WIFI_PSK
+	string "Wi-Fi password (WPA2-PSK)"
+	default ""
+
+config GW_MQTT_HOST
+	string "MQTT broker host name or IPv4 address"
+	default ""
+	help
+	  Leave empty to switch MQTT off. Reports are published to
+	  sylvaecho/<node>/<type>.
+
+config GW_MQTT_PORT
+	int "MQTT broker port"
+	default 1883
+
+config GW_MQTT_USER
+	string "MQTT user name (optional)"
+	default ""
+
+config GW_MQTT_PASS
+	string "MQTT password (optional)"
+	default ""
+
+config GW_LORA_FREQ_HZ
+	int "LoRa channel, Hz (must match the node's config.h)"
+	default 865062500
+
+endmenu
+
+source "Kconfig.zephyr"
