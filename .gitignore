@@ -8,3 +8,7 @@ __pycache__/
 build/
 # Never commit LoRaWAN keys
 Firmware/secrets.conf
+
+# Enclosure: board STEP used by the Fusion script (33 MB, export it from EasyEDA Pro) and the script log
+Enclosure/ref/
+Enclosure/fusion_log.txt

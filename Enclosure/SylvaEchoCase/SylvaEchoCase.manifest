@@ -1,0 +1,10 @@
+{
+	"autodeskProduct": "Fusion",
+	"type": "script",
+	"author": "",
+	"description": {
+		"": "SylvaEcho tree-mount enclosure"
+	},
+	"supportedOS": "windows|mac",
+	"editEnabled": true
+}
